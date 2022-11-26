@@ -19,5 +19,7 @@ public class P01Ages {
         } else if (age >= 0) {
             System.out.println("baby");
         }
+
+        System.out.println();
     }
 }
