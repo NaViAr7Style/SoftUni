@@ -1,0 +1,52 @@
+package lecture02AMultidimensionalArraysLab;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class P05MaximumSumOf2X2Submatrix {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] dimensions = Arrays.stream(scanner.nextLine().split(", ")).mapToInt(Integer::parseInt).toArray();
+
+        int rows = dimensions[0];
+        int cols = dimensions[1];
+
+        int[][] matrix = new int[rows][cols];
+
+        for (int r = 0; r < matrix.length; r++) {
+            matrix[r] = Arrays.stream(scanner.nextLine().split(", ")).mapToInt(Integer::parseInt).toArray();
+        }
+
+        int largestSum = Integer.MIN_VALUE;
+        int[][] maxSumMatrix = new int[2][2];
+
+        for (int r = 0; r < matrix.length - 1; r++) {
+            for (int c = 0; c < matrix[r].length - 1; c++) {
+                int topLeftNum = matrix[r][c];
+                int topRightNum = matrix[r][c + 1];
+                int bottomLeftNum = matrix[r + 1][c];
+                int bottomRightNum = matrix[r + 1][c + 1];
+
+                int sum = topLeftNum + topRightNum + bottomLeftNum + bottomRightNum;
+
+                if (sum > largestSum) {
+                    largestSum = sum;
+
+                    maxSumMatrix[0][0] = matrix[r][c];
+                    maxSumMatrix[0][1] = matrix[r][c + 1];
+                    maxSumMatrix[1][0] = matrix[r + 1][c];
+                    maxSumMatrix[1][1] = matrix[r + 1][c + 1];
+                }
+            }
+        }
+
+        for (int[] arr : maxSumMatrix) {
+            for (int n : arr) {
+                System.out.print(n + " ");
+            }
+            System.out.println();
+        }
+        System.out.println(largestSum);
+    }
+}
