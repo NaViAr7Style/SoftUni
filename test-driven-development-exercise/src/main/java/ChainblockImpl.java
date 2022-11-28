@@ -9,6 +9,8 @@ public class ChainblockImpl implements Chainblock{
         transactionMap = new HashMap<>();
     }
 
+
+
     public int getCount() {
         return transactionMap.size();
     }
@@ -30,11 +32,7 @@ public class ChainblockImpl implements Chainblock{
         transactionMap.get(id).setStatus(newStatus);
     }
 
-    private void ensureTxIsPresent(int id) {
-        if (!transactionMap.containsKey(id)) {
-            throw new IllegalArgumentException("Invalid transaction ID!");
-        }
-    }
+
 
     public void removeTransactionById(int id) {
         ensureTxIsPresent(id);
@@ -52,15 +50,21 @@ public class ChainblockImpl implements Chainblock{
                 .sorted(Comparator.comparing(Transaction::getAmount).reversed())
                 .collect(Collectors.toList());
 
-        if (filteredTransactions.isEmpty()) {
-            throw new IllegalArgumentException("");
-        }
+        ensureCollectionIsNotEmpty(filteredTransactions);
 
         return filteredTransactions;
     }
 
     public Iterable<String> getAllSendersWithTransactionStatus(TransactionStatus status) {
-        return null;
+        Iterable<Transaction> filteredTransactions = getByTransactionStatus(status);
+
+        List<String> senders = new ArrayList<>();
+
+        filteredTransactions.forEach(tr -> senders.add(tr.getFrom()));
+
+        ensureCollectionIsNotEmpty(senders);
+
+        return senders;
     }
 
     public Iterable<String> getAllReceiversWithTransactionStatus(TransactionStatus status) {
@@ -97,5 +101,17 @@ public class ChainblockImpl implements Chainblock{
 
     public Iterator<Transaction> iterator() {
         return null;
+    }
+
+    private void ensureTxIsPresent(int id) {
+        if (!transactionMap.containsKey(id)) {
+            throw new IllegalArgumentException("Invalid transaction ID!");
+        }
+    }
+
+    private static void ensureCollectionIsNotEmpty(List list) {
+        if (list.isEmpty()) {
+            throw new IllegalArgumentException("There are no transactions with the selected status!");
+        }
     }
 }

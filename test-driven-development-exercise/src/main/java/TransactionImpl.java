@@ -33,6 +33,11 @@ public class TransactionImpl implements Comparable<TransactionImpl>, Transaction
         return amount;
     }
 
+    @Override
+    public String getFrom() {
+        return from;
+    }
+
     public int compareTo(TransactionImpl o) {
         return 0;
     }

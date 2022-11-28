@@ -2,7 +2,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
@@ -18,10 +20,7 @@ public class ChainblockImplTest {
     @Test
     public void testAddTransaction() {
         assertEquals(0, database.getCount());
-        Transaction transaction = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
-                "Dummy_1", "Dummy_2", 150.90);
-
-        database.add(transaction);
+        Transaction transaction = addOneTransaction();
         assertEquals(1, database.getCount());
         assertTrue(database.contains(transaction));
     }
@@ -29,10 +28,7 @@ public class ChainblockImplTest {
     @Test
     public void testAddExistingTransaction() {
         assertEquals(0, database.getCount());
-        Transaction transaction = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
-                "Dummy_1", "Dummy_2", 150.90);
-
-        database.add(transaction);
+        Transaction transaction = addOneTransaction();
         database.add(transaction);
         assertEquals(1, database.getCount());
         assertTrue(database.contains(transaction.getId()));
@@ -40,10 +36,7 @@ public class ChainblockImplTest {
 
     @Test
     public void testChangeTransactionStatusChangesStatus() {
-        Transaction transaction = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
-                "Dummy_1", "Dummy_2", 150.90);
-
-        database.add(transaction);
+        Transaction transaction = addOneTransaction();
         database.changeTransactionStatus(1, TransactionStatus.ABORTED);
         assertEquals(TransactionStatus.ABORTED, transaction.getStatus());
     }
@@ -55,18 +48,16 @@ public class ChainblockImplTest {
 
     @Test
     public void testRemoveTransactionByIdRemovesCorrectTransaction() {
-        Transaction transaction1 = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
-                "Dummy_1", "Dummy_2", 150.90);
+        addOneTransaction();
+        addMultipleTransactions();
 
-        Transaction transaction2 = new TransactionImpl(2, TransactionStatus.ABORTED,
-                "Dummy_3", "Dummy_4", 50.55);
-
-        database.add(transaction1);
-        database.add(transaction2);
+        int sizeBeforeRemoval = database.getCount();
 
         database.removeTransactionById(1);
 
-        assertEquals(1, database.getCount());
+        int sizeAfterRemoval = database.getCount();
+
+        assertEquals(sizeBeforeRemoval - 1, sizeAfterRemoval);
         assertFalse(database.contains(1));
     }
 
@@ -77,16 +68,10 @@ public class ChainblockImplTest {
 
     @Test
     public void testGetByIdReturnsTheCorrectTransaction() {
-        Transaction transaction1 = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
-                "Dummy_1", "Dummy_2", 150.90);
+        Transaction transaction = addOneTransaction();
+        addMultipleTransactions();
 
-        Transaction transaction2 = new TransactionImpl(2, TransactionStatus.ABORTED,
-                "Dummy_3", "Dummy_4", 50.55);
-
-        database.add(transaction1);
-        database.add(transaction2);
-
-        assertEquals(transaction1, database.getById(1));
+        assertEquals(transaction, database.getById(1));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -95,28 +80,13 @@ public class ChainblockImplTest {
     }
 
     @Test
-    public void testGetByTransactionStatusReturnsTheCorrectTransactions() {
-        Transaction transaction1 = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
-                "Dummy_1", "Dummy_2", 40.90);
+    public void testGetByTransactionStatusReturnsTheCorrectTransactionsSorted() {
+        List<Transaction> transactions = addMultipleTransactions();
 
-        Transaction transaction2 = new TransactionImpl(2, TransactionStatus.ABORTED,
-                "Dummy_3", "Dummy_4", 50.55);
-
-        Transaction transaction3 = new TransactionImpl(3, TransactionStatus.SUCCESSFUL,
-                "Dummy_5", "Dummy_6", 85.45);
-
-        Transaction transaction4 = new TransactionImpl(4, TransactionStatus.SUCCESSFUL,
-                "Dummy_5", "Dummy_6", 65.00);
-
-        database.add(transaction1);
-        database.add(transaction2);
-        database.add(transaction3);
-        database.add(transaction4);
-
-        List<Transaction> expected = new ArrayList<>();
-        expected.add(transaction3);
-        expected.add(transaction4);
-        expected.add(transaction1);
+        List<Transaction> expected = transactions.stream()
+                .filter(tr -> tr.getStatus().equals(TransactionStatus.SUCCESSFUL))
+                .sorted(Comparator.comparing(Transaction::getAmount).reversed())
+                .collect(Collectors.toList());
 
         Iterable<Transaction> result = database.getByTransactionStatus(TransactionStatus.SUCCESSFUL);
         List<Transaction> actual = new ArrayList<>();
@@ -128,6 +98,69 @@ public class ChainblockImplTest {
     @Test(expected = IllegalArgumentException.class)
     public void testGetByTransactionStatusThrowsWhenThereAreNoTxsWithThatStatus() {
         database.getByTransactionStatus(TransactionStatus.SUCCESSFUL);
+    }
+
+    @Test
+    public void testGetAllSendersWithTransactionStatusReturnsTheCorrectSenders() {
+        Transaction transaction = addOneTransaction();
+        List<Transaction> transactions = addMultipleTransactions();
+        transactions.add(transaction);
+
+        List<String> expected = transactions.stream()
+                .filter(tr -> tr.getStatus().equals(TransactionStatus.SUCCESSFUL))
+                .sorted(Comparator.comparing(Transaction::getAmount).reversed())
+                .map(Transaction::getFrom)
+                .collect(Collectors.toList());
+
+        Iterable<String> result = database.getAllSendersWithTransactionStatus(TransactionStatus.SUCCESSFUL);
+        assertNotNull(result);
+        List<String> actual = new ArrayList<>();
+        result.forEach(actual::add);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testGetAllSendersWithTransactionStatusThrowsWhenThereAreNoTxsWithThatStatus() {
+        addMultipleTransactions();
+        database.getAllSendersWithTransactionStatus(TransactionStatus.UNAUTHORIZED);
+    }
+
+
+
+
+
+    private Transaction addOneTransaction() {
+        Transaction transaction = new TransactionImpl(1, TransactionStatus.SUCCESSFUL,
+                "Dummy_1", "Dummy_2", 45.50);
+
+        database.add(transaction);
+        return transaction;
+    }
+
+    private List<Transaction> addMultipleTransactions() {
+        List<Transaction> transactions = new ArrayList<>();
+
+        Transaction transaction2 = new TransactionImpl(2, TransactionStatus.ABORTED,
+                "Dummy_2", "Dummy_4", 50.55);
+
+        Transaction transaction3 = new TransactionImpl(3, TransactionStatus.SUCCESSFUL,
+                "Dummy_3", "Dummy_18", 85.45);
+
+        Transaction transaction4 = new TransactionImpl(4, TransactionStatus.SUCCESSFUL,
+                "Dummy_4", "Dummy_22", 65.00);
+
+        Transaction transaction5 = new TransactionImpl(5, TransactionStatus.FAILED,
+                "Dummy_5", "Dummy_43", 12.25);
+
+        transactions.add(transaction2);
+        transactions.add(transaction3);
+        transactions.add(transaction4);
+        transactions.add(transaction5);
+
+        transactions.forEach(database::add);
+
+        return transactions;
     }
 
 }
