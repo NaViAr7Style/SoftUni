@@ -4,4 +4,6 @@ public interface Transaction {
     TransactionStatus getStatus();
 
     void setStatus(TransactionStatus newStatus);
+
+    double getAmount();
 }

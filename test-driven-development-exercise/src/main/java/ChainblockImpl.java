@@ -1,10 +1,9 @@
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ChainblockImpl implements Chainblock{
 
-    private Map<Integer, Transaction> transactionMap;
+    private final Map<Integer, Transaction> transactionMap;
 
     public ChainblockImpl() {
         transactionMap = new HashMap<>();
@@ -27,23 +26,37 @@ public class ChainblockImpl implements Chainblock{
     }
 
     public void changeTransactionStatus(int id, TransactionStatus newStatus) {
-        if (!transactionMap.containsKey(id)) {
-            throw new IllegalArgumentException("Invalid transaction ID!");
-        }
-
+        ensureTxIsPresent(id);
         transactionMap.get(id).setStatus(newStatus);
     }
 
-    public void removeTransactionById(int id) {
+    private void ensureTxIsPresent(int id) {
+        if (!transactionMap.containsKey(id)) {
+            throw new IllegalArgumentException("Invalid transaction ID!");
+        }
+    }
 
+    public void removeTransactionById(int id) {
+        ensureTxIsPresent(id);
+        transactionMap.remove(id);
     }
 
     public Transaction getById(int id) {
+        ensureTxIsPresent(id);
         return transactionMap.get(id);
     }
 
     public Iterable<Transaction> getByTransactionStatus(TransactionStatus status) {
-        return null;
+        List<Transaction> filteredTransactions = transactionMap.values().stream()
+                .filter(tr -> tr.getStatus().equals(status))
+                .sorted(Comparator.comparing(Transaction::getAmount).reversed())
+                .collect(Collectors.toList());
+
+        if (filteredTransactions.isEmpty()) {
+            throw new IllegalArgumentException("");
+        }
+
+        return filteredTransactions;
     }
 
     public Iterable<String> getAllSendersWithTransactionStatus(TransactionStatus status) {

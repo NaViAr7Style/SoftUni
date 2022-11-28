@@ -28,6 +28,11 @@ public class TransactionImpl implements Comparable<TransactionImpl>, Transaction
         status = newStatus;
     }
 
+    @Override
+    public double getAmount() {
+        return amount;
+    }
+
     public int compareTo(TransactionImpl o) {
         return 0;
     }
