@@ -1,24 +1,37 @@
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class ChainblockImpl implements Chainblock{
+
+    private Map<Integer, Transaction> transactionMap;
+
+    public ChainblockImpl() {
+        transactionMap = new HashMap<>();
+    }
+
     public int getCount() {
-        return 0;
+        return transactionMap.size();
     }
 
     public void add(Transaction transaction) {
-
+        transactionMap.putIfAbsent(transaction.getId(), transaction);
     }
 
     public boolean contains(Transaction transaction) {
-        return false;
+        return transactionMap.containsKey(transaction.getId());
     }
 
     public boolean contains(int id) {
-        return false;
+        return transactionMap.containsKey(id);
     }
 
     public void changeTransactionStatus(int id, TransactionStatus newStatus) {
+        if (!transactionMap.containsKey(id)) {
+            throw new IllegalArgumentException("Invalid transaction ID!");
+        }
 
+        transactionMap.get(id).setStatus(newStatus);
     }
 
     public void removeTransactionById(int id) {
@@ -26,7 +39,7 @@ public class ChainblockImpl implements Chainblock{
     }
 
     public Transaction getById(int id) {
-        return null;
+        return transactionMap.get(id);
     }
 
     public Iterable<Transaction> getByTransactionStatus(TransactionStatus status) {
