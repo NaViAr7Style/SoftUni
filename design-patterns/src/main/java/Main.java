@@ -12,6 +12,8 @@ public class Main {
         System.out.println(instance.getPopulation(capitals, "Sofia"));
         SingletonDataContainer instance1 = SingletonDataContainer.getInstance();
         System.out.println(instance1.getPopulation(capitals, "Varna"));
+
+
     }
 }
 
