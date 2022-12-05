@@ -22,8 +22,7 @@ public class ControllerImpl implements Controller{
 
     private Repository<Discoverer> discoverers;
     private Repository<Spot> spots;
-    private int excludedDiscoverers;
-    private int inspectedSpots;
+    private int inspectedSpotsCount;
 
     public ControllerImpl() {
         discoverers = new DiscovererRepository();
@@ -74,11 +73,11 @@ public class ControllerImpl implements Controller{
         Discoverer discoverer = discoverers.byName(discovererName);
 
         if (discoverer == null) {
-            throw new IllegalArgumentException(String.format(DISCOVERER_DOES_NOT_EXIST, discovererName));
+            String errorMessage = String.format(DISCOVERER_DOES_NOT_EXIST, discovererName);
+            throw new IllegalArgumentException(errorMessage);
         }
 
         discoverers.remove(discoverer);
-        excludedDiscoverers++;
 
         return String.format(DISCOVERER_EXCLUDE, discovererName);
     }
@@ -86,38 +85,48 @@ public class ControllerImpl implements Controller{
     @Override
     public String inspectSpot(String spotName) {
 
-        Operation operation = new OperationImpl();
-        Spot spot = spots.byName(spotName);
-
-        List<Discoverer> discoverersToSend = discoverers.getCollection().stream()
+        List<Discoverer> suitableDiscoverers = discoverers.getCollection().stream()
                 .filter(d -> d.getEnergy() > 45)
                 .collect(Collectors.toList());
 
-        if (discoverersToSend.isEmpty()) {
+        if (suitableDiscoverers.isEmpty()) {
             throw new IllegalArgumentException(SPOT_DISCOVERERS_DOES_NOT_EXISTS);
         }
 
-        operation.startOperation(spot, discoverersToSend);
-        inspectedSpots++;
+        Operation operation = new OperationImpl();
+        Spot spot = spots.byName(spotName);
 
-        return String.format(INSPECT_SPOT, spotName, excludedDiscoverers);
+        operation.startOperation(spot, suitableDiscoverers);
+        inspectedSpotsCount++;
+
+        long exhaustedDiscoverers = suitableDiscoverers.stream()
+                .filter(d -> d.getEnergy() == 0)
+                .count();
+
+        return String.format(INSPECT_SPOT, spotName, exhaustedDiscoverers);
     }
 
     @Override
     public String getStatistics() {
 
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format(FINAL_SPOT_INSPECT, inspectedSpots))
+        sb.append(String.format(FINAL_SPOT_INSPECT, inspectedSpotsCount))
                 .append(System.lineSeparator())
                 .append(FINAL_DISCOVERER_INFO);
 
         for (Discoverer discoverer : discoverers.getCollection()) {
+            String museumExhibits = String.join(FINAL_DISCOVERER_MUSEUM_EXHIBITS_DELIMITER, discoverer.getMuseum().getExhibits());
+
+            if (museumExhibits.trim().isEmpty()) {
+                museumExhibits = "None";
+            }
+
             sb.append(System.lineSeparator())
                     .append(String.format(FINAL_DISCOVERER_NAME, discoverer.getName()))
                     .append(System.lineSeparator())
                     .append(String.format(FINAL_DISCOVERER_ENERGY, discoverer.getEnergy()))
                     .append(System.lineSeparator())
-                    .append(String.format(FINAL_DISCOVERER_MUSEUM_EXHIBITS, "None"));
+                    .append(String.format(FINAL_DISCOVERER_MUSEUM_EXHIBITS, museumExhibits));
         }
 
         return sb.toString();

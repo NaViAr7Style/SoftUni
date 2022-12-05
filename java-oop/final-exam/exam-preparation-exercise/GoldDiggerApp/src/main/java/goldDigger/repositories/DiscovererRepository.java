@@ -21,13 +21,13 @@ public class DiscovererRepository implements Repository<Discoverer> {
     }
 
     @Override
-    public void add(Discoverer entity) {
-        discoverers.put(entity.getName(), entity);
+    public void add(Discoverer discoverer) {
+        discoverers.put(discoverer.getName(), discoverer);
     }
 
     @Override
-    public boolean remove(Discoverer entity) {
-        return discoverers.remove(entity.getName(), entity);
+    public boolean remove(Discoverer discoverer) {
+        return discoverers.remove(discoverer.getName(), discoverer);
     }
 
     @Override

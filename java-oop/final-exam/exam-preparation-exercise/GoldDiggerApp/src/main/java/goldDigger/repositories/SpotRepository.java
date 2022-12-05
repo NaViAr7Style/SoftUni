@@ -21,13 +21,13 @@ public class SpotRepository implements Repository<Spot> {
     }
 
     @Override
-    public void add(Spot entity) {
-        spots.put(entity.getName(), entity);
+    public void add(Spot spot) {
+        spots.put(spot.getName(), spot);
     }
 
     @Override
-    public boolean remove(Spot entity) {
-        return spots.remove(entity.getName(), entity);
+    public boolean remove(Spot spot) {
+        return spots.remove(spot.getName(), spot);
     }
 
     @Override
