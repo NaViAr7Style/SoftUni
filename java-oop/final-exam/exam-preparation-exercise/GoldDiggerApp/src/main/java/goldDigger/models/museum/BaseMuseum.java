@@ -13,7 +13,7 @@ public class BaseMuseum implements Museum {
 
     @Override
     public Collection<String> getExhibits() {
-        return null;
+        return exhibits;
     }
 
 }

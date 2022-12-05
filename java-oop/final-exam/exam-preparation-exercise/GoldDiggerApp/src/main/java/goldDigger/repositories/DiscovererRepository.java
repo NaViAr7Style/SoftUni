@@ -2,35 +2,37 @@ package goldDigger.repositories;
 
 import goldDigger.models.discoverer.Discoverer;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-public class DiscovererRepository implements Repository {
+public class DiscovererRepository implements Repository<Discoverer> {
 
-    private Collection<Discoverer> discoverers;
+    private Map<String, Discoverer> discoverers;
 
     public DiscovererRepository() {
-        discoverers = new ArrayList<>();
+        discoverers = new LinkedHashMap<>();
     }
 
     @Override
     public Collection<Discoverer> getCollection() {
-        return null;
+        return discoverers.values().stream().collect(Collectors.toUnmodifiableList());
     }
 
     @Override
-    public void add(Object entity) {
-
+    public void add(Discoverer entity) {
+        discoverers.put(entity.getName(), entity);
     }
 
     @Override
-    public boolean remove(Object entity) {
-        return false;
+    public boolean remove(Discoverer entity) {
+        return discoverers.remove(entity.getName(), entity);
     }
 
     @Override
-    public Object byName(String name) {
-        return null;
+    public Discoverer byName(String name) {
+        return discoverers.get(name);
     }
 
 }

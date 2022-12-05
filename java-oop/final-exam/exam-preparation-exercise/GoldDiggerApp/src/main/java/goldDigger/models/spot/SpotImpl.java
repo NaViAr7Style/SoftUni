@@ -3,6 +3,8 @@ package goldDigger.models.spot;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import static goldDigger.common.ExceptionMessages.SPOT_NAME_NULL_OR_EMPTY;
+
 public class SpotImpl implements Spot {
 
     private String name;
@@ -15,15 +17,20 @@ public class SpotImpl implements Spot {
 
     @Override
     public Collection<String> getExhibits() {
-        return null;
+        return exhibits;
     }
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
 
     private void setName(String name) {
+
+        if (name == null || name.trim().isEmpty()) {
+            throw new NullPointerException(SPOT_NAME_NULL_OR_EMPTY);
+        }
+
         this.name = name;
     }
 

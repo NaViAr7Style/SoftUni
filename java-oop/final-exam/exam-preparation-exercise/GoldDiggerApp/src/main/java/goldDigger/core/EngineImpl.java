@@ -17,8 +17,6 @@ public class EngineImpl implements Engine{
         this.reader = new BufferedReader(new InputStreamReader(System.in));
     }
 
-
-
     @Override
     public void run() {
         while (true) {
