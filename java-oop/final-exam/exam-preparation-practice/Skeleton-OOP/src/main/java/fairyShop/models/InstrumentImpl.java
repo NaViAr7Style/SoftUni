@@ -1,5 +1,7 @@
 package fairyShop.models;
 
+import static fairyShop.common.ExceptionMessages.INSTRUMENT_POWER_LESS_THAN_ZERO;
+
 public class InstrumentImpl implements Instrument {
 
     private int power;
@@ -10,20 +12,25 @@ public class InstrumentImpl implements Instrument {
 
     @Override
     public int getPower() {
-        return 0;
+        return power;
     }
 
     @Override
     public void use() {
-
+        power = Math.max(0, power - 10);
     }
 
     @Override
     public boolean isBroken() {
-        return false;
+        return power == 0;
     }
 
     private void setPower(int power) {
+
+        if (power < 0) {
+            throw new IllegalArgumentException(INSTRUMENT_POWER_LESS_THAN_ZERO);
+        }
+
         this.power = power;
     }
 

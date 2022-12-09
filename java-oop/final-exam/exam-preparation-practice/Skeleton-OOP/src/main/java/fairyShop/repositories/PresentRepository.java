@@ -3,29 +3,36 @@ package fairyShop.repositories;
 import fairyShop.models.Present;
 
 import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PresentRepository implements Repository<Present> {
 
-    private Collection<Present> presents;
+    private Map<String, Present> presents;
+
+    public PresentRepository() {
+        presents = new LinkedHashMap<>();
+    }
 
     @Override
     public Collection<Present> getModels() {
-        return null;
+        return presents.values().stream().collect(Collectors.toUnmodifiableList());
     }
 
     @Override
-    public void add(Present model) {
-
+    public void add(Present present) {
+        presents.put(present.getName(), present);
     }
 
     @Override
-    public boolean remove(Present model) {
-        return false;
+    public boolean remove(Present present) {
+        return presents.remove(present.getName(), present);
     }
 
     @Override
     public Present findByName(String name) {
-        return null;
+        return presents.get(name);
     }
 
 }
