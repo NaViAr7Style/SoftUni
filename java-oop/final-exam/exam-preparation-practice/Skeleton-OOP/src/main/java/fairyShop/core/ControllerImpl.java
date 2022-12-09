@@ -2,6 +2,7 @@ package fairyShop.core;
 
 import fairyShop.models.*;
 import fairyShop.repositories.HelperRepository;
+import fairyShop.repositories.PresentRepository;
 import fairyShop.repositories.Repository;
 
 import java.util.List;
@@ -14,9 +15,12 @@ public class ControllerImpl implements Controller {
 
     private Repository<Helper> helperRepository;
     private Repository<Present> presentRepository;
+    private int craftedPresents;
+    private int brokenToolsCount;
 
     public ControllerImpl() {
         helperRepository = new HelperRepository();
+        presentRepository = new PresentRepository();
     }
 
     @Override
@@ -78,11 +82,11 @@ public class ControllerImpl implements Controller {
         Helper helper = suitableHelpers.iterator().next();
         Present present = presentRepository.findByName(presentName);
 
-        int allToolsCount = helperRepository.getModels().stream()
+        int allToolsCount = suitableHelpers.stream()
                 .mapToInt(h -> h.getInstruments().size())
                 .sum();
 
-        while (helper.canWork() && !present.isDone()) {
+        while (helper.canWork() && !present.isDone() && helper.getInstruments().size() > 0) {
             shop.craft(present, helper);
 
             if (!helper.canWork() && suitableHelpers.iterator().hasNext()) {
@@ -90,25 +94,42 @@ public class ControllerImpl implements Controller {
             }
         }
 
-        int remainingToolsCount = helperRepository.getModels().stream()
+        int remainingToolsCount = suitableHelpers.stream()
                 .mapToInt(h -> h.getInstruments().size())
                 .sum();
 
-        int brokenToolsCount = allToolsCount - remainingToolsCount;
+        brokenToolsCount += allToolsCount - remainingToolsCount;
 
         String presentStatus = present.isDone() ?
                 "done" :
                 "not done";
 
-        String output = String.format(PRESENT_DONE, presentName, presentStatus) +
-                String.format(COUNT_BROKEN_INSTRUMENTS, brokenToolsCount);
+        if (present.isDone()) {
+            craftedPresents++;
+        }
 
-        return output;
+        return String.format(PRESENT_DONE, presentName, presentStatus) +
+                String.format(COUNT_BROKEN_INSTRUMENTS, brokenToolsCount);
     }
 
     @Override
     public String report() {
-        return null;
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(String.format("%d presents are done!", craftedPresents))
+                .append(System.lineSeparator())
+                .append("Helpers info:");
+
+        for (Helper helper : helperRepository.getModels()) {
+
+            sb.append(System.lineSeparator())
+                    .append(String.format("Name: %s%n", helper.getName()))
+                    .append(String.format("Energy: %d%n", helper.getEnergy()))
+                    .append(String.format("Instruments: %d not broken left", helper.getInstruments().size()));
+
+        }
+
+        return sb.toString();
     }
 
 }

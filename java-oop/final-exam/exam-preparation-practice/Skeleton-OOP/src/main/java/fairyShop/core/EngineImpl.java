@@ -19,7 +19,7 @@ public class EngineImpl implements Engine {
     @Override
     public void run() {
         while (true) {
-            String result = null;
+            String result;
             try {
                 result = processInput();
 

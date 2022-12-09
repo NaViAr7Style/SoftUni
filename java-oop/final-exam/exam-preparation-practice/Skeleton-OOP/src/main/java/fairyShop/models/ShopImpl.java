@@ -20,6 +20,10 @@ public class ShopImpl implements Shop {
             present.getCrafted();
             instrument.use();
 
+            if (instrument.isBroken()) {
+                instruments.remove(instrument);
+            }
+
             if (instrument.isBroken() && instruments.iterator().hasNext()) {
                 instrument = instruments.iterator().next();
             }
