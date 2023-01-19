@@ -1,0 +1,20 @@
+html {
+    font-family: Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 75px;
+}
+
+.heading {
+    font-family: Georgia, serif;
+    font-weight: 500;
+}
+
+blockquote {
+    border-left: 3px solid  rgb(221,221,221);
+    font-style: italic;
+}
+
+#author {
+    text-align: right;
+}
