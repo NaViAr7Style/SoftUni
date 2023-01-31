@@ -1,0 +1,48 @@
+html {
+  font-family: Helvetica, sans-serif;
+}
+
+body {
+  color: rgb(51, 51, 51);
+  background-color: rgb(238, 238, 238);
+  display: flex;
+}
+
+article {
+  max-width: 800px;
+}
+
+img {
+  max-width: 75%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Times New Roman", Times, serif;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+p,
+ul {
+  font-size: small;
+}
+
+article {
+  float: left;
+}
+
+aside {
+  font-weight: bold;
+  float: right;
+  max-width: 300px;
+}
+
+aside ul {
+    list-style-position: inside;
+}
+
+h3 {
+    margin-left: 20px;
+}
