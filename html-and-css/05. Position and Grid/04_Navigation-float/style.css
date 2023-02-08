@@ -1,0 +1,107 @@
+body {
+  padding: 25px 50px;
+  background-color: rgb(238, 238, 238);
+}
+
+main {
+  max-width: 70%;
+}
+
+.site-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.navigation {
+  margin-top: -50px;
+  float: right;
+}
+
+.navigation__list {
+  list-style: none;
+}
+
+.list__item {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.nav__button {
+  text-decoration: none;
+  color: rgb(0, 102, 0);
+}
+
+.first-image {
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 5px;
+  border: 2px solid black;
+  padding: 5px;
+  width: 150px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.25);
+}
+
+.container p {
+  font-size: 13px;
+}
+
+.block {
+  width: 45%;
+}
+
+.left {
+  float: left;
+  width: 50%;
+  border-right: 2px solid grey;
+  padding-right: 15px;
+}
+
+.right {
+  float: right;
+  width: 50%;
+  padding-left: 15px;
+}
+
+.quotation {
+  font-size: 13px;
+  font-style: italic;
+  font-family: Georgia, serif;
+}
+
+.author {
+  text-align: right;
+  font-style: italic;
+  font-family: Georgia, serif;
+}
+
+.second-image {
+  float: left;
+  border: 2px solid black;
+  padding: 5px;
+  width: 150px;
+  margin: 0 10px 5px 0;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.25);
+}
+
+.side__menu {
+  float: right;
+  text-align: left;
+  margin-right: 50px;
+}
+
+.side__button {
+  text-decoration: none;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(0, 102, 0);
+}
+
+.heading {
+  font-family: Georgia, serif;
+  font-size: 1.2em;
+}

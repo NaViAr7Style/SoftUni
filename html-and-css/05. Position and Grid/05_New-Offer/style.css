@@ -1,0 +1,11 @@
+main {
+  width: 700px;
+  height: 500px;
+  margin: 100px 60px;
+}
+
+.new {
+  position: relative;
+  top: -500px;
+  left: 220px;
+}
