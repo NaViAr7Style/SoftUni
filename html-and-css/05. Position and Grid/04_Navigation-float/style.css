@@ -4,7 +4,9 @@ body {
 }
 
 main {
+  display: inline-block;
   max-width: 70%;
+  margin-right: 5%;
 }
 
 .site-title {
@@ -89,9 +91,10 @@ main {
 }
 
 .side__menu {
-  float: right;
+  display: inline-block;
+  max-width: 25%;
   text-align: left;
-  margin-right: 50px;
+  vertical-align: top;
 }
 
 .side__button {

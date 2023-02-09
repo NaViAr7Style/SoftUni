@@ -6,11 +6,12 @@ body {
   grid-template-areas:
     "top"
     "bottom";
+  margin: 0;
 }
 
 .viewport {
   position: relative;
-  height: 300px;
+  height: 50vh;
 }
 
 .upper {
