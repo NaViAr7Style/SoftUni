@@ -1,0 +1,56 @@
+html {
+  font-family: Helvetica, sans-serif;
+}
+
+.card {
+  display: flex;
+  background-color: #f6f8f9;
+  border-radius: 12px;
+  margin: 48px auto;
+  width: 70vw;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.content {
+  padding: 48px 0px 48px 12px;
+  width: 45%;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.image {
+  width: 35%;
+}
+
+.info {
+  font-size: 18px;
+  color: #68737d;
+  line-height: 2;
+  margin-bottom: 32px;
+  letter-spacing: 0.6px;
+}
+
+.btn {
+  padding: 12px 24px;
+  margin: 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  letter-spacing: 0.6px;
+  font-size: 16px;
+}
+
+.contact {
+  color: #fff;
+  background-color: #786eff;
+  border: none;
+}
