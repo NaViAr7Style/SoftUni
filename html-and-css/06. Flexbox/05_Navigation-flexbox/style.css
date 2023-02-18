@@ -1,0 +1,45 @@
+html {
+  font-family: Helvetica, sans-serif;
+  padding: 40px 60px;
+}
+
+.head {
+  border-bottom: 2px solid rgb(0, 0, 0);
+  display: flex;
+  justify-content: space-between;
+}
+
+.main-title {
+  display: inline-block;
+}
+
+.navigation {
+  margin-left: 50px;
+  display: inline-block;
+}
+
+.navigation__list {
+  display: flex;
+  list-style: none;
+}
+
+.list__item {
+  display: inline-block;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(0, 153, 0);
+}
+
+.link:hover {
+  color: red;
+}
+
+.list__item:not(last-child) {
+  margin-right: 25px;
+}
+
+main > h2 {
+  font-family: "Times New Roman", Times, serif;
+}

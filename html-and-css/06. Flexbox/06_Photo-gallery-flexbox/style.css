@@ -1,0 +1,30 @@
+body {
+  display: flex;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60vw;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.item {
+  display: flex;
+  border: 5px solid black;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  max-width: 25%;
+  overflow: hidden;
+}
+
+.image {
+    margin: 12px;
+}

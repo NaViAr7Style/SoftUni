@@ -1,0 +1,74 @@
+html {
+  font-family: Helvetica, sans-serif;
+  font-size: 20px;
+  padding: 32px 64px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 4px;
+  max-width: 15vw;
+  height: 35rem;
+  overflow: hidden;
+}
+
+span {
+  border: 1px black solid;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(50% - 2px);
+  height: 11%;
+}
+
+.box-1 {
+  order: 9;
+}
+
+.box-2 {
+  order: 2;
+}
+
+.box-3 {
+  order: 10;
+}
+
+.box-4 {
+  order: 4;
+}
+
+.box-5 {
+  order: 8;
+}
+
+.box-6 {
+  order: 7;
+}
+
+.box-7 {
+  order: 11;
+}
+
+.box-8 {
+  order: 5;
+}
+
+.box-9 {
+  order: 6;
+}
+
+.box-10 {
+  order: 12;
+}
+
+.box-11 {
+  order: 1;
+}
+
+.box-12 {
+  order: 3;
+}
