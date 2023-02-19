@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
+
+@import "https://use.fontawesome.com/releases/v6.3.0/css/all.css";
+
+body {
+  background-color: rgba(237, 216, 175, 255);
+  font-family: "Open Sans", sans-serif;
+  margin: 48px 96px;
+}
+
+.container {
+  max-width: 1000px;
+  max-height: 400px;
+  margin: 36px auto;
+  display: flex;
+  gap: 32px;
+}
+
+.thumbnails {
+  display: grid;
+  grid-template-columns: auto auto;
+  max-width: 75%;
+  gap: 32px;
+}
+
+.thumb-box {
+    border: 1px solid black;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.thumb-box .image {
+  width: 100%;
+  height: 84%;
+}
+
+.info {
+  background-color: rgba(102, 84, 94, 255);
+  height: 16%;
+  padding: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.side-menu {
+  color: rgba(112, 93, 99, 255);
+  font-size: 18px;
+}
+
+.menu-title {
+  font-size: 18px;
+}
+
+.side-list {
+  list-style: none;
+  padding-inline-start: 0px;
+}
+
+.side-btn {
+  line-height: 2;
+}
+
+.link {
+  text-decoration: none;
+  color: rgba(112, 93, 99, 255);
+  font-weight: 500;
+}
+
+.link i {
+    margin-right: 2px;
+}

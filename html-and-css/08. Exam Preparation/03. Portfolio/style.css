@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap");
+
+@import "https://use.fontawesome.com/releases/v6.3.0/css/all.css";
+
+body {
+  font-family: Raleway, sans-serif;
+}
+
+h2 {
+    font-weight: 400;
+    color: #7d7d7d;
+}
+
+h2 span {
+    font-weight: bold;
+    color: black;
+}
+
+p {
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 28px 32px;
+    gap: 28px;
+}
+
+.block {
+    display: flex;
+    background-color: #efefef;
+}
+
+.block:nth-child(1) {
+    position: relative;
+}
+
+.menu {
+    display: flex;
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    min-width: 60px;
+    justify-content: space-between;
+}
+
+.menu p {
+    all: unset;
+    font-size: 12px;
+}
+
+.hero-image {
+    max-width: 40%;
+}
+
+.content {
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 24px 64px;
+    
+}

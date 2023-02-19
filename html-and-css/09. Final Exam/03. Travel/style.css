@@ -1,0 +1,199 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
+@import "https://use.fontawesome.com/releases/v6.3.0/css/all.css";
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 400px;
+  margin-bottom: 48px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  z-index: -1;
+}
+
+.width-container {
+  width: 70vw;
+}
+
+.navigation {
+  display: flex;
+  margin: 6px auto;
+  justify-content: space-between;
+  margin-bottom: 48px;
+}
+
+.moto {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 22px;
+}
+
+.nav-btn .link {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+}
+
+.hero-btn {
+  background-color: rgba(55, 5, 17, 255);
+  color: #fff;
+  font-size: 14px;
+  border-radius: 24px;
+  padding: 4px 24px;
+  font-weight: 500;
+}
+
+.site-title {
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.site-title span {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.hero-text {
+  margin-bottom: 32px;
+  font-size: 14px;
+}
+
+.content {
+  text-align: center;
+}
+
+.hint {
+  color: rgba(135, 131, 134, 255);
+  font-size: 14px;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.content {
+  width: 70vw;
+  margin: auto;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 500px 500px;
+  gap: 12px 40px;
+}
+
+.card {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-image {
+  height: 40%;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.card-image .image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-title {
+  margin-bottom: 12px;
+}
+
+.text-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-content {
+  text-align: left;
+  max-width: 80%;
+  margin-bottom: 18px;
+}
+
+.card-button {
+  background-color: #fff;
+  border-radius: 48px;
+  border-color: rgba(99, 61, 70, 255);
+  padding: 8px 24px;
+  font-weight: 600;
+}
+
+.footer {
+  background-color: #000000;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  width: 100%;
+}
+
+.footer-container {
+  display: flex;
+  width: 70vw;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.footer-moto {
+  color: #fff;
+}
+
+.footer-sales,
+.general-info {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.info-link,
+.sale-link {
+  text-decoration: none;
+  font-size: 12px;
+  color: #fff;
+}
+
+.social-media {
+  color: #fff;
+  font-size: 12px;
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.media-link i {
+  color: #fff;
+  font-size: 16px;
+}
