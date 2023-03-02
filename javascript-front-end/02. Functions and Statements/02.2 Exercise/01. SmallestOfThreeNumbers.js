@@ -1,11 +1,3 @@
-function printSmallestNumber(...numbers) {
-    let min = Number.MAX_SAFE_INTEGER;
-
-    for (const num of numbers) {
-        if (num < min) {
-            min = num;
-        }
-    }
-
-    console.log(min);
+function printSmallestNumber(firstNum, secondNum, thirdNum) {
+    return Math.min(firstNum, secondNum, thirdNum);
 }
