@@ -1,5 +1,4 @@
-function checkSign(num1, num2, num3) {
-    let numbers = [num1, num2, num3];
+function checkSign(...numbers) {
     let negativeSignCounter = 0;
 
     for (let number of numbers) {
