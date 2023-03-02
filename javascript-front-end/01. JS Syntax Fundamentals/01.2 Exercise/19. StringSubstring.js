@@ -1,13 +1,12 @@
-function solved(wordToFind, text) {
-    let searchedWord = wordToFind.toLowerCase();
-    words = text.toLowerCase().split(" ");
+function solved(word, text) {
+    let wordLowerCase = word.toLowerCase();
+    let textArr = text.toLowerCase().split(" ");
 
-    for (let word of words) {
-        if (word === searchedWord) {
-            console.log(wordToFind);
-            return;
+    for (let currentWord of textArr) {
+        if (currentWord === wordLowerCase) {
+            return currentWord;
         }
     }
 
-    console.log(`${wordToFind} not found!`);
+    return `${word} not found!`;
 }
