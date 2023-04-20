@@ -1,93 +1,93 @@
 window.addEventListener("load", solve);
 
 function solve() {
-  const storyState = {
-    firstName: null,
-    lastName: null,
-    age: null,
-    title: null,
-    genre: null,
-    story: null
-  }
-
-  const inputDOMSelectors = {
+  const inputDOMElements = {
     firstName: document.getElementById("first-name"),
     lastName: document.getElementById("last-name"),
     age: document.getElementById("age"),
     title: document.getElementById("story-title"),
     genre: document.getElementById("genre"),
-    story: document.getElementById("story")
-  }
+    story: document.getElementById("story"),
+  };
 
-  const otherDOMSelectors = {
+  let inputValues = [];
+
+  const otherDOMElements = {
     publishBtn: document.getElementById("form-btn"),
-    previewList: documente.gtElementById("preview-list"),
-    mainContainer: document.getElementById("main")
-  }
+    previewList: document.getElementById("preview-list"),
+    mainDiv: document.getElementById("main"),
+  };
 
-  otherDOMSelectors.publishBtn.addEventListener("click", publishStoryHandler);
+  otherDOMElements.publishBtn.addEventListener("click", publishStoryHandler);
 
   function publishStoryHandler() {
-    const allFieldsHaveValue = Object.values(inputDOMSelectors)
-      .every((input) => input.value !== "");
+    const allInputsHaveValues = Object.values(inputDOMElements).every(
+      (input) => input.value !== ""
+    );
 
-    if (!allFieldsHaveValue) {
+    if (!allInputsHaveValues) {
       return;
     }
 
-    const { firstName, lastName, age, title, genre, story } = inputDOMSelectors;
-    const li = createElement("li", otherDOMSelectors.previewList, null, ["story-info"]);
+    const { firstName, lastName, age, title, genre, story } = inputDOMElements;
+
+    const li = createElement("li", otherDOMElements.previewList, "", [
+      "story-info",
+    ]);
     const article = createElement("article", li);
     createElement("h4", article, `Name: ${firstName.value} ${lastName.value}`);
     createElement("p", article, `Age: ${age.value}`);
     createElement("p", article, `Title: ${title.value}`);
     createElement("p", article, `Genre: ${genre.value}`);
     createElement("p", article, story.value);
-    const saveBtn = createElement("button", li, "Save Story", ["save-btn"]);
-    const editBtn = createElement("button", li, "Edit Story", ["edit-btn"]);
-    const deleteBtn = createElement("button", li, "Delete Story", ["delete-btn"]);
 
-    editBtn.addEventListener("click", editStoryHandler);
-    deleteBtn.addEventListener("click", deleteStoryHandler);
+    const saveBtn = createElement("button", li, "Save Story", ["save-btn"]);
     saveBtn.addEventListener("click", saveStoryHandler);
 
-    for (const key in inputDOMSelectors) {
-      storyState[key] = inputDOMSelectors[key].value;
+    const editBtn = createElement("button", li, "Edit Story", ["edit-btn"]);
+    editBtn.addEventListener("click", editStoryHandler);
+
+    const deleteBtn = createElement("button", li, "Delete Story", [
+      "delete-btn",
+    ]);
+    deleteBtn.addEventListener("click", deleteStoryHandler);
+
+    for (const input in inputDOMElements) {
+      inputValues.push(inputDOMElements[input].value);
     }
 
-    clearAllInputs();
-    otherDOMSelectors.publishBtn.disabled = true;
+    Object.values(inputDOMElements).forEach((input) => (input.value = ""));
+    otherDOMElements.publishBtn.disabled = true;
   }
 
   function editStoryHandler() {
-    for (const key in inputDOMSelectors) {
-      inputDOMSelectors[key].value = storyState[key];
+    for (const input in inputDOMElements) {
+      inputDOMElements[input].value = inputValues.shift();
     }
 
-    otherDOMSelectors.publishBtn.disabled = false;
-    otherDOMSelectors.previewList.innerHTML = "";
-    createElement("h3", otherDOMSelectors.previewList, "Preview");
-  }
-
-  function deleteStoryHandler() {
-    const liItem = this.parentNode;
-    liItem.remove();
-    otherDOMSelectors.publishBtn.disabled = false;
+    otherDOMElements.publishBtn.disabled = false;
+    this.parentNode.remove();
   }
 
   function saveStoryHandler() {
-    otherDOMSelectors.mainContainer.innerHTML = "";
-    createElement("h1", otherDOMSelectors.mainContainer, "Your scary story is saved!");
+    otherDOMElements.mainDiv.innerHTML = "";
+    createElement("h1", otherDOMElements.mainDiv, "Your scary story is saved!");
   }
 
-  function clearAllInputs() {
-    Object.values(inputDOMSelectors)
-      .forEach((input) => {
-        input.value = "";
-      })
+  function deleteStoryHandler() {
+    this.parentNode.remove();
+    otherDOMElements.publishBtn.disabled = false;
   }
 
-  function createElement(type, parentNode, content, classes, id, attributes, useInnerHtml) {
+  function createElement(
+    type,
+    parentNode,
+    content,
+    classes,
+    id,
+    attributes,
+    useInnerHtml
+  ) {
     const htmlElement = document.createElement(type);
 
     if (content && useInnerHtml) {
