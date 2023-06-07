@@ -265,7 +265,7 @@ CREATE TABLE items(
     REFERENCES item_types(item_type_id)
 );
 
-CREATE TABLE orders_items(
+CREATE TABLE order_items(
 	order_id INT,
     item_id INT,
     CONSTRAINT pk_orders_id__item_id
