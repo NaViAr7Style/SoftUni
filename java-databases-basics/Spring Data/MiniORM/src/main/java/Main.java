@@ -1,24 +1,26 @@
 import entities.User;
 import orm.EntityManager;
-import orm.config.Connector;
+import orm.MyConnector;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, InstantiationException {
-        Connector.createConnection("root", "12345", "soft_uni");
+        MyConnector.createConnection("root", "12345", "soft_uni");
 
-        Connection connection = Connector.getConnection();
+        Connection connection = MyConnector.getConnection();
 
         EntityManager<User> userEntityManager = new EntityManager<>(connection);
-        boolean persistResult = userEntityManager.persist(new User("User", "Pass", 24, LocalDate.now()));
-        User first = userEntityManager.findFirst(User.class);
+        User first = userEntityManager.findFirst(User.class, "id = 1");
 
-        System.out.println(persistResult);
-        System.out.println(first);
+        List<User> userList = new ArrayList<>();
+        userEntityManager.find(User.class).forEach(userList::add);
+
+        System.out.println();
     }
 }

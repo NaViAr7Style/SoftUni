@@ -1,8 +1,8 @@
 package entities;
 
-import orm.annotations.Column;
-import orm.annotations.Entity;
-import orm.annotations.Id;
+import annotations.Column;
+import annotations.Entity;
+import annotations.Id;
 
 import java.time.LocalDate;
 
@@ -25,7 +25,7 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    public User() {};
+    public User() {}
 
     public User(String username, String password, int age, LocalDate registrationDate) {
         this.username = username;

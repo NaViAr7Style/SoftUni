@@ -1,8 +1,9 @@
 package orm;
 
-import orm.annotations.Column;
-import orm.annotations.Entity;
-import orm.annotations.Id;
+import annotations.Column;
+import annotations.Entity;
+import annotations.Id;
+import entities.User;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -11,12 +12,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class EntityManager<E> implements DbContext<E> {
 
-    private Connection connection;
+    private final Connection connection;
+    private static final String UPDATE_QUERY = "UPDATE %s SET %s WHERE id = %s";
     private static final String INSERT_QUERY = "INSERT INTO %s(%s) VALUES (%s);";
 
     public EntityManager(Connection connection) {
@@ -33,18 +38,37 @@ public class EntityManager<E> implements DbContext<E> {
             return insertEntity(entity);
         }
 
-//        return updateEntity(entity);
-        return false;
+        return updateEntity(entity);
+    }
+
+
+
+    @Override
+    public Iterable<E> find(Class<E> table) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        return find(table, null);
     }
 
     @Override
-    public Iterable<E> find(Class<E> table) {
-        return null;
-    }
+    public Iterable<E> find(Class<E> table, String where) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        String SELECT_QUERY_SINGLE = "SELECT * FROM %s %s";
+        String tableName = getTableName(table);
+        String actualWhere = where == null
+                ? ""
+                : "WHERE " + where + ";";
 
-    @Override
-    public Iterable<E> find(Class<E> table, String where) {
-        return null;
+        String query = String.format(SELECT_QUERY_SINGLE, tableName, actualWhere);
+
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<E> objectList = new LinkedList<>();
+
+        while (resultSet.next()) {
+            E entity = createEntity(table, resultSet);
+            objectList.add(entity);
+        }
+
+        return objectList;
     }
 
     @Override
@@ -58,7 +82,7 @@ public class EntityManager<E> implements DbContext<E> {
         String tableName = getTableName(table);
         String actualWhere = where == null
                 ? ""
-                : where;
+                : "WHERE " + where;
 
         String query = String.format(SELECT_QUERY_SINGLE, tableName, actualWhere);
 
@@ -124,6 +148,38 @@ public class EntityManager<E> implements DbContext<E> {
         String fieldValuesWithoutId = getFieldValuesWithoutId(entity);
 
         String query = String.format(INSERT_QUERY, tableName, fieldNamesWithoutId, fieldValuesWithoutId);
+
+        PreparedStatement statement = this.connection.prepareStatement(query);
+
+        return statement.executeUpdate() == 1;
+    }
+
+    private boolean updateEntity(E entity) throws SQLException, IllegalAccessException {
+        String tableName = getTableName(entity.getClass());
+
+        String[] fieldNamesWithoutId = getFieldNamesWithoutId(entity.getClass()).split(",");
+        String[] fieldValuesWithoutId = getFieldValuesWithoutId(entity).split(",");
+
+        StringBuilder updateFieldValues = new StringBuilder();
+
+        for (int i = 0; i < fieldNamesWithoutId.length - 1; i++) {
+            updateFieldValues
+                    .append(fieldNamesWithoutId[i])
+                    .append(" = ")
+                    .append(fieldValuesWithoutId[i])
+                    .append(", ");
+        }
+
+        updateFieldValues
+                .append(fieldNamesWithoutId[fieldNamesWithoutId.length - 1])
+                .append(" = ")
+                .append(fieldValuesWithoutId[fieldValuesWithoutId.length - 1]);
+
+        Class<?> entityClass = entity.getClass();
+        Field idField = getIdField(entityClass);
+        idField.setAccessible(true);
+
+        String query = String.format(UPDATE_QUERY, tableName, updateFieldValues, idField.get(entity));
 
         PreparedStatement statement = this.connection.prepareStatement(query);
 
