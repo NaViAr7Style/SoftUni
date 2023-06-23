@@ -11,16 +11,18 @@
         </property>
         <!-- Connection Settings -->
         <property name="hibernate.connection.url">
-            jdbc:mysql://localhost:3306/school
+            jdbc:mysql://localhost:3306/school?createDatabaseIfNotExist=true
         </property>
         <property name="hibernate.connection.username">
             root
         </property>
         <property name="hibernate.connection.password">
-            1234
+            12345
         </property>
         <property name="hbm2ddl.auto">
             update
         </property>
+        <!-- List of XML mapping files -->
+        <mapping resource="student.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
