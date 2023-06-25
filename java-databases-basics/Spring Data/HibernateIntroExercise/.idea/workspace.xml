@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7e5e61-91f2-4a27-b7be-8a1c95ab8186" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/AddingANewAddressAndUpdatingTheEmployee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ChangeCasing.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ContainsEmployee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EmployeesFromDepartment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/EmployeesWithASalaryOver50K.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/AddressesWithEmployeeCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/GetEmployeesWithProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AddingANewAddressAndUpdatingTheEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AddingANewAddressAndUpdatingTheEmployee.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,16 +63,16 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EmployeesFromDepartment">
-    <configuration name="ChangeCasing" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChangeCasing" />
+  <component name="RunManager" selected="Application.GetEmployeesWithProject">
+    <configuration name="AddingANewAddressAndUpdatingTheEmployee" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AddingANewAddressAndUpdatingTheEmployee" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ContainsEmployee" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ContainsEmployee" />
+    <configuration name="AddressesWithEmployeeCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AddressesWithEmployeeCount" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -89,8 +85,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeesWithASalaryOver50K" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="EmployeesWithASalaryOver50K" />
+    <configuration name="GetEmployeesWithProject" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GetEmployeesWithProject" />
+      <module name="introtohibernate" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -98,10 +101,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GetEmployeesWithProject" />
+        <item itemvalue="Application.AddressesWithEmployeeCount" />
+        <item itemvalue="Application.AddingANewAddressAndUpdatingTheEmployee" />
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.EmployeesFromDepartment" />
-        <item itemvalue="Application.EmployeesWithASalaryOver50K" />
-        <item itemvalue="Application.ContainsEmployee" />
-        <item itemvalue="Application.ChangeCasing" />
       </list>
     </recent_temporary>
   </component>
@@ -115,6 +119,7 @@
       <updated>1687608523207</updated>
       <workItem from="1687608524373" duration="4462000" />
       <workItem from="1687623059390" duration="1675000" />
+      <workItem from="1687688564877" duration="7173000" />
     </task>
     <servers />
   </component>
