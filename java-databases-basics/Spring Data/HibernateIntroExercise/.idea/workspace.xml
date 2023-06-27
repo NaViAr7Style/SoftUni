@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b7e5e61-91f2-4a27-b7be-8a1c95ab8186" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/AddressesWithEmployeeCount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/GetEmployeesWithProject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/5ecafbd3-3a98-4898-b9ab-95f7c88fa64e/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/EmployeesMaximumSalaries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/FindEmployeesByFirstName.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/FindTheLatest10Projects.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IncreaseSalaries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/RemoveTowns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05558c59-e47a-4ed4-ad12-58fd9680d46e/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05558c59-e47a-4ed4-ad12-58fd9680d46e/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05558c59-e47a-4ed4-ad12-58fd9680d46e/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/05558c59-e47a-4ed4-ad12-58fd9680d46e/storage_v2/_src_/schema/sys.zb4BAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/AddingANewAddressAndUpdatingTheEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AddingANewAddressAndUpdatingTheEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/GetEmployeesWithProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/GetEmployeesWithProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/GetEmployeesWithProject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/GetEmployeesWithProject.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,37 +69,37 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GetEmployeesWithProject">
-    <configuration name="AddingANewAddressAndUpdatingTheEmployee" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AddingANewAddressAndUpdatingTheEmployee" />
+  <component name="RunManager" selected="Application.RemoveTowns">
+    <configuration name="EmployeesMaximumSalaries" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="EmployeesMaximumSalaries" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AddressesWithEmployeeCount" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="AddressesWithEmployeeCount" />
+    <configuration name="FindEmployeesByFirstName" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FindEmployeesByFirstName" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EmployeesFromDepartment" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="EmployeesFromDepartment" />
+    <configuration name="FindTheLatest10Projects" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FindTheLatest10Projects" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GetEmployeesWithProject" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GetEmployeesWithProject" />
+    <configuration name="IncreaseSalaries" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IncreaseSalaries" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test" />
+    <configuration name="RemoveTowns" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RemoveTowns" />
       <module name="introtohibernate" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -101,11 +107,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GetEmployeesWithProject" />
-        <item itemvalue="Application.AddressesWithEmployeeCount" />
-        <item itemvalue="Application.AddingANewAddressAndUpdatingTheEmployee" />
-        <item itemvalue="Application.test" />
-        <item itemvalue="Application.EmployeesFromDepartment" />
+        <item itemvalue="Application.RemoveTowns" />
+        <item itemvalue="Application.EmployeesMaximumSalaries" />
+        <item itemvalue="Application.FindEmployeesByFirstName" />
+        <item itemvalue="Application.IncreaseSalaries" />
+        <item itemvalue="Application.FindTheLatest10Projects" />
       </list>
     </recent_temporary>
   </component>
@@ -120,6 +126,8 @@
       <workItem from="1687608524373" duration="4462000" />
       <workItem from="1687623059390" duration="1675000" />
       <workItem from="1687688564877" duration="7173000" />
+      <workItem from="1687792833708" duration="1359000" />
+      <workItem from="1687865217521" duration="9708000" />
     </task>
     <servers />
   </component>

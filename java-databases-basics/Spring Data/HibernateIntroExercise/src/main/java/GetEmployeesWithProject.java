@@ -2,7 +2,6 @@ import entities.Employee;
 import entities.Project;
 
 import javax.persistence.EntityManager;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class GetEmployeesWithProject {
@@ -11,15 +10,15 @@ public class GetEmployeesWithProject {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        EntityManager entityManager = Utils.createEntityManager();
+        final Scanner scanner = new Scanner(System.in);
+        final EntityManager entityManager = Utils.createEntityManager();
 
         int employeeId = Integer.parseInt(scanner.nextLine());
 
         try {
             Employee employee = entityManager
-                    .createQuery("FROM Employee WHERE id = :id", Employee.class)
-                    .setParameter("id", employeeId)
+                    .createQuery("FROM Employee WHERE id = :employeeId", Employee.class)
+                    .setParameter("employeeId", employeeId)
                     .getSingleResult();
 
             System.out.printf(PRINT_EMPLOYEE, employee.getFirstName(), employee.getLastName(), employee.getJobTitle());
@@ -27,8 +26,9 @@ public class GetEmployeesWithProject {
             employee
                 .getProjects()
                 .stream()
-                .sorted(Comparator.comparing(Project::getName))
-                .forEach(p -> System.out.printf("\t%s\n", p.getName()));
+                .map(Project::getName)
+                .sorted()
+                .forEach(p -> System.out.printf("\t%s\n", p));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
