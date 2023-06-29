@@ -38,7 +38,18 @@ public class AccountServiceImpl implements  AccountService {
     }
 
     @Override
-    public void transferMoney(BigDecimal money, Long id) {
+    public void depositMoney(BigDecimal money, Long id) {
+        Account account = accountRepository
+                .findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Account is missing"));
 
+        if (money.compareTo((BigDecimal.ZERO)) <= 0) {
+            throw new IllegalArgumentException("No money to deposit");
+        }
+
+        BigDecimal newBalance = account.getBalance().add(money);
+        account.setBalance(newBalance);
+
+        accountRepository.save(account);
     }
 }
