@@ -28,10 +28,9 @@ public class ConsoleRunner implements CommandLineRunner {
         seedService.seedAllData();
 
 //        System.out.println(bookService.getAllBooksAfterYear(LocalDate.of(2000, 1, 1)).size());
-
 //        authorService.getAllAuthorsWithBooksBeforeGivenYear(LocalDate.of(1990, 1, 1));
-
-        System.out.println(authorService.getAllAuthorsOrderedByBooksDesc().size());
+//        authorService.getAllAuthorsOrderedByBooksDesc();
+        bookService.findAllByAuthor("George Powell");
     }
 
 }

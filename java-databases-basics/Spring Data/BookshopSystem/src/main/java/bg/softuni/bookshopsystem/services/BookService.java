@@ -14,4 +14,6 @@ public interface BookService {
     List<Book> getAllBooksAfterYear(LocalDate date);
 
     List<Book> getAllBooksBeforeYear(LocalDate date);
+
+    List<Book> findAllByAuthor(String author);
 }

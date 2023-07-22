@@ -42,10 +42,15 @@ public class CategoryServiceImpl implements CategoryService {
     public Set<Category> getRandomCategories() {
         Set<Category> categories = new HashSet<>();
 
-//        for (int i = 0; i < categoryRepository.count() / 2; i++) {
+//        Theoretically, this code should work and books should have various number of categories between 1 and 4.
+//        However, for some reason we are able to add multiple references to the same category object
+//        within a Set collection, which causes an error.
+//
+//        for (long i = 0; i < categoryRepository.count() / 2; i++) {
 //            categories.add(getRandomCategory());
 //        }
 
+        //Adding only one category per book as the for loop throws an error.
         categories.add(getRandomCategory());
 
         return categories;

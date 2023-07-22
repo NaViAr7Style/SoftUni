@@ -51,4 +51,9 @@ public class Book extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
     private Set<Category> categories;
 
+
+    public String getTitleReleaseDateAndCopies() {
+        return String.format("Title: %s, Release date: %s, Copies sold: %s", title, releaseDate, copies);
+    }
+
 }

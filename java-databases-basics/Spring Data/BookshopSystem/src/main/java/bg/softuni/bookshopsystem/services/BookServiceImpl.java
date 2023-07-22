@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> getAllBooksAfterYear(LocalDate date) {
-        List<Book> allByReleaseDateAfter = bookRepository.findAllByReleaseDateAfter(date).get();
+        List<Book> allByReleaseDateAfter = bookRepository.findAllByReleaseDateAfter(date);
 
         allByReleaseDateAfter
                 .stream()
@@ -45,6 +45,19 @@ public class BookServiceImpl implements BookService {
         return bookRepository
                 .findAllByReleaseDateBefore(date)
                 .orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public List<Book> findAllByAuthor(String author) {
+
+        List<Book> allBooksByAuthor = bookRepository.findAllByAuthor(author);
+
+        allBooksByAuthor
+                .stream()
+                .map(Book::getTitleReleaseDateAndCopies)
+                .forEach(System.out::println);
+
+        return allBooksByAuthor;
     }
 
 }
