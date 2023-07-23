@@ -16,4 +16,6 @@ public interface AuthorService {
     List<Author> getAllAuthorsWithBooksBeforeGivenYear(LocalDate date);
 
     List<Author> getAllAuthorsOrderedByBooksDesc();
+
+    List<Author> findAllByFirstNameEndingWith(String ending);
 }

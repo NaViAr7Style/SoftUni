@@ -1,7 +1,8 @@
-package bg.softuni.bookshopsystem.services;
+package bg.softuni.bookshopsystem.services.impl;
 
 import bg.softuni.bookshopsystem.entities.Category;
 import bg.softuni.bookshopsystem.repositories.CategoryRepository;
+import bg.softuni.bookshopsystem.services.CategoryService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

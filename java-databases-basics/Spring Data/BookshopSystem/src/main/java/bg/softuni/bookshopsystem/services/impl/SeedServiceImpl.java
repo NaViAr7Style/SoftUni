@@ -1,10 +1,14 @@
-package bg.softuni.bookshopsystem.services;
+package bg.softuni.bookshopsystem.services.impl;
 
 import bg.softuni.bookshopsystem.entities.Author;
 import bg.softuni.bookshopsystem.entities.Book;
 import bg.softuni.bookshopsystem.entities.Category;
 import bg.softuni.bookshopsystem.entities.enums.AgeRestriction;
 import bg.softuni.bookshopsystem.entities.enums.EditionType;
+import bg.softuni.bookshopsystem.services.AuthorService;
+import bg.softuni.bookshopsystem.services.BookService;
+import bg.softuni.bookshopsystem.services.CategoryService;
+import bg.softuni.bookshopsystem.services.SeedService;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

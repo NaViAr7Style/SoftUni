@@ -1,8 +1,10 @@
-package bg.softuni.bookshopsystem.services;
+package bg.softuni.bookshopsystem.services.impl;
 
 import bg.softuni.bookshopsystem.entities.Author;
 import bg.softuni.bookshopsystem.entities.Book;
 import bg.softuni.bookshopsystem.repositories.AuthorRepository;
+import bg.softuni.bookshopsystem.services.AuthorService;
+import bg.softuni.bookshopsystem.services.BookService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -74,6 +76,19 @@ public class AuthorServiceImpl implements AuthorService {
                 .forEach(System.out::println);
 
         return authors;
+    }
+
+    @Override
+    public List<Author> findAllByFirstNameEndingWith(String ending) {
+
+        List<Author> allByFirstNameEndingWith = authorRepository.findAllByFirstNameEndingWith(ending);
+
+        allByFirstNameEndingWith
+                .stream()
+                .map(Author::getAuthorFullName)
+                .forEach(System.out::println);
+
+        return allByFirstNameEndingWith;
     }
 
 }

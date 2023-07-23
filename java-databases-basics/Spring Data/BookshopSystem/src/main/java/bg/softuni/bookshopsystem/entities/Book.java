@@ -56,4 +56,16 @@ public class Book extends BaseEntity {
         return String.format("Title: %s, Release date: %s, Copies sold: %s", title, releaseDate, copies);
     }
 
+    public String getTitleAndPrice() {
+        return String.format("%s - $%s", title, price);
+    }
+
+    public String getTitleEditionTypeAndPrice() {
+        return String.format("%s %s %s", title, editionType, price);
+    }
+
+    public String getTitleAndAuthor() {
+        return String.format("%s (%s %s)", title, author.getFirstName(), author.getLastName());
+    }
+
 }
