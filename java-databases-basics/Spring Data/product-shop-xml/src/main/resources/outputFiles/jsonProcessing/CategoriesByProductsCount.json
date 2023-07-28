@@ -1,68 +1,68 @@
 [
   {
     "category": "Drugs",
-    "productsCount": 77,
-    "averagePrice": 795.077662,
-    "totalRevenue": 61220.98
+    "productsCount": 74,
+    "averagePrice": 773.690946,
+    "totalRevenue": 57253.13
   },
   {
     "category": "Adult",
-    "productsCount": 76,
-    "averagePrice": 807.293158,
-    "totalRevenue": 61354.28
+    "productsCount": 68,
+    "averagePrice": 802.384412,
+    "totalRevenue": 54562.14
   },
   {
     "category": "Electronics",
-    "productsCount": 50,
-    "averagePrice": 738.6618,
-    "totalRevenue": 36933.09
+    "productsCount": 75,
+    "averagePrice": 703.66,
+    "totalRevenue": 52774.50
   },
   {
     "category": "Garden",
-    "productsCount": 70,
-    "averagePrice": 720.769571,
-    "totalRevenue": 50453.87
+    "productsCount": 65,
+    "averagePrice": 765.027846,
+    "totalRevenue": 49726.81
   },
   {
     "category": "Weapons",
-    "productsCount": 80,
-    "averagePrice": 731.946375,
-    "totalRevenue": 58555.71
+    "productsCount": 70,
+    "averagePrice": 866.179286,
+    "totalRevenue": 60632.55
   },
   {
     "category": "For Children",
-    "productsCount": 72,
-    "averagePrice": 755.516944,
-    "totalRevenue": 54397.22
+    "productsCount": 66,
+    "averagePrice": 773.192576,
+    "totalRevenue": 51030.71
   },
   {
     "category": "Sports",
-    "productsCount": 72,
-    "averagePrice": 683.871944,
-    "totalRevenue": 49238.78
+    "productsCount": 69,
+    "averagePrice": 796.870435,
+    "totalRevenue": 54984.06
   },
   {
     "category": "Fashion",
-    "productsCount": 76,
-    "averagePrice": 746.681184,
-    "totalRevenue": 56747.77
+    "productsCount": 68,
+    "averagePrice": 711.439853,
+    "totalRevenue": 48377.91
   },
   {
     "category": "Autoparts",
-    "productsCount": 67,
-    "averagePrice": 736.801045,
-    "totalRevenue": 49365.67
+    "productsCount": 65,
+    "averagePrice": 731.329385,
+    "totalRevenue": 47536.41
   },
   {
     "category": "Business",
-    "productsCount": 69,
-    "averagePrice": 777.827826,
-    "totalRevenue": 53670.12
+    "productsCount": 70,
+    "averagePrice": 767.378571,
+    "totalRevenue": 53716.50
   },
   {
     "category": "Other",
-    "productsCount": 77,
-    "averagePrice": 735.70013,
-    "totalRevenue": 56648.91
+    "productsCount": 69,
+    "averagePrice": 765.531594,
+    "totalRevenue": 52821.68
   }
 ]

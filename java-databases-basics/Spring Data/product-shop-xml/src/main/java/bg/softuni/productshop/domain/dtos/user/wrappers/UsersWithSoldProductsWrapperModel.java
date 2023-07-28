@@ -1,5 +1,6 @@
-package bg.softuni.productshop.domain.dtos.user;
+package bg.softuni.productshop.domain.dtos.user.wrappers;
 
+import bg.softuni.productshop.domain.dtos.user.UserWithSoldProductsDTO2;
 import com.google.gson.annotations.Expose;
 import lombok.Getter;
 import lombok.Setter;

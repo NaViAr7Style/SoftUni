@@ -4,7 +4,7 @@ import bg.softuni.productshop.constants.Utils;
 import bg.softuni.productshop.domain.dtos.user.UserDTO;
 import bg.softuni.productshop.domain.dtos.user.UserWithSoldProductsDTO;
 import bg.softuni.productshop.domain.dtos.user.UserWithSoldProductsDTO2;
-import bg.softuni.productshop.domain.dtos.user.UsersWithSoldProductsWrapperModel;
+import bg.softuni.productshop.domain.dtos.user.wrappers.UsersWithSoldProductsWrapperModel;
 import bg.softuni.productshop.domain.entities.User;
 import bg.softuni.productshop.domain.repositories.UserRepository;
 import org.springframework.stereotype.Service;

@@ -4,6 +4,7 @@ import bg.softuni.productshop.domain.services.category.CategoryService;
 import bg.softuni.productshop.domain.services.product.ProductService;
 import bg.softuni.productshop.domain.services.seed.SeedService;
 import bg.softuni.productshop.domain.services.user.UserService;
+import jakarta.xml.bind.JAXBException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +27,8 @@ public class ConsoleRunner implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws IOException {
-        seedService.seedData();
+    public void run(String... args) throws IOException, JAXBException {
+        seedService.seedData("XML");
 
         productService.getProductsInRangeWithNoBuyer(BigDecimal.valueOf(500), BigDecimal.valueOf(1000));
 

@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT * FROM `product-shop`.users ORDER BY RAND() LIMIT 1;", nativeQuery = true)
+    @Query(value = "SELECT * FROM `product-shop-xml`.users ORDER BY RAND() LIMIT 1;", nativeQuery = true)
     Optional<User> getRandomEntity();
 
     List<User> findAllBySoldProductsBuyerIsNotNullOrderBySoldProductsBuyerLastNameAscSoldProductsBuyerFirstNameAsc();

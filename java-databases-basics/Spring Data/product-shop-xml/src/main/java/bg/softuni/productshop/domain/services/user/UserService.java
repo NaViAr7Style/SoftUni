@@ -1,7 +1,7 @@
 package bg.softuni.productshop.domain.services.user;
 
 import bg.softuni.productshop.domain.dtos.user.UserWithSoldProductsDTO;
-import bg.softuni.productshop.domain.dtos.user.UsersWithSoldProductsWrapperModel;
+import bg.softuni.productshop.domain.dtos.user.wrappers.UsersWithSoldProductsWrapperModel;
 import bg.softuni.productshop.domain.entities.User;
 
 import java.io.IOException;

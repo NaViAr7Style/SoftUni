@@ -1,19 +1,21 @@
 package bg.softuni.productshop.domain.services.seed;
 
+import jakarta.xml.bind.JAXBException;
+
 import java.io.IOException;
 
 public interface SeedService {
 
 
-    void seedUsers() throws IOException;
+    void seedUsers(String type) throws IOException, JAXBException;
 
-    void seedCategories() throws IOException;
+    void seedCategories(String type) throws IOException, JAXBException;
 
-    void seedProducts() throws IOException;
+    void seedProducts(String type) throws IOException, JAXBException;
 
-    default void seedData() throws IOException {
-        seedUsers();
-        seedCategories();
-        seedProducts();
+    default void seedData(String type) throws IOException, JAXBException {
+        seedCategories(type);
+        seedUsers(type);
+        seedProducts(type);
     }
 }
