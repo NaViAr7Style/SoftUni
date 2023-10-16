@@ -1,6 +1,7 @@
 package org.softuni.mobilele.models.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,13 +9,10 @@ import lombok.Setter;
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     @Column
     private String email;
@@ -30,6 +28,5 @@ public class User {
 
     @Column(name = "is_active")
     private boolean isActive;
-
 
 }
