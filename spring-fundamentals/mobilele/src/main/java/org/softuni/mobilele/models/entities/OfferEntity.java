@@ -36,6 +36,7 @@ public class OfferEntity extends BaseEntity {
     private EngineTypeEnum engineType;
 
     @Column(name = "transmission_type")
+    @Enumerated(EnumType.STRING)
     private TransmissionTypeEnum transmissionType;
 
     @Column(name = "image_url")
