@@ -1,11 +1,17 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/mobilele?createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: root
-    password: 12345
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/mobilele?createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:12345}
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+
+
+#server:
+#  servlet:
+#    session:
+#      timeout: 30m
