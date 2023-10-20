@@ -17,6 +17,6 @@ import lombok.Setter;
 public class BrandEntity extends BaseEntity {
 
     @Column(unique = true, nullable = false)
-    private String brand;
+    private String name;
 
 }
