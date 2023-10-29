@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/mobilele?createDatabaseIfNotExist=true&serverTimezone=UTC
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD:12345}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
@@ -15,6 +15,13 @@ spring:
     init:
       mode: never
 
+open.exchange.rates:
+  schema: https
+  host: openexchangerates.org
+  path: /api/latest.json
+  app_id: ${APP_ID}
+  symbols: EUR,BGN
+  enabled: false
 
 #server:
 #  servlet:
