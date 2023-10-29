@@ -45,8 +45,8 @@ public class OfferServiceImpl implements OfferService {
 
         offerEntity.setUuid(UUID.randomUUID());
         offerEntity.setDescription(createOfferDTO.description());
-        offerEntity.setEngineType(createOfferDTO.engineType());
-        offerEntity.setTransmissionType(createOfferDTO.transmissionType());
+        offerEntity.setEngine(createOfferDTO.engine());
+        offerEntity.setTransmission(createOfferDTO.transmission());
         offerEntity.setImageUrl(createOfferDTO.imageUrl());
         offerEntity.setMileage(createOfferDTO.mileage());
         offerEntity.setPrice(BigDecimal.valueOf(createOfferDTO.price()));

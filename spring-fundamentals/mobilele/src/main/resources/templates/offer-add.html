@@ -21,6 +21,7 @@
 
         <div class="row">
 
+            <!-- Model -->
             <div class="form-group col-md-6 mb-3">
                 <label class="text-center text-white font-weight-bold" for="modelId">Model</label>
                 <select id="modelId"
@@ -43,7 +44,9 @@
                     Vehicle model is required.
                 </p>
             </div>
+            <!-- EO: Model -->
 
+            <!-- Price -->
             <div class="form-group col-md-6 mb-3">
                 <label for="price" class="text-white font-weight-bold">Price</label>
                 <input id="price"
@@ -57,17 +60,19 @@
                     Suggested price is required.
                 </p>
             </div>
+            <!-- EO: Price -->
 
         </div>
 
 
         <div class="row">
 
+            <!-- Engine -->
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="engineType">Engine</label>
-                <select id="engineType"
-                        th:name="engineType"
-                        th:field="*{engineType}"
+                <label class="text-center text-white font-weight-bold" for="engine">Engine</label>
+                <select id="engine"
+                        th:name="engine"
+                        th:field="*{engine}"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select engine type -</option>
@@ -76,38 +81,42 @@
                     <option th:each="e : ${engines}"
                             th:text="${e}"
                             th:value="${e}"
-                            th:selected="${e} == *{engineType}">
+                            th:selected="${e} == *{engine}">
                     </option>
                 </select>
                 <p class="invalid-feedback errors alert alert-danger">
                     Engine type is required.
                 </p>
             </div>
+            <!-- EO: Engine -->
 
+            <!-- Transmission -->
             <div class="form-group col-md-6 mb-3">
-                <label class="text-center text-white font-weight-bold" for="transmissionType">Transmission</label>
-                <select id="transmissionType"
-                        th:name="transmissionType"
-                        th:field="*{transmissionType}"
+                <label class="text-center text-white font-weight-bold" for="transmission">Transmission</label>
+                <select id="transmission"
+                        th:name="transmission"
+                        th:field="*{transmission}"
                         th:errorclass="is-invalid"
                         class="form-control">
                     <option value="">- Select transmission type -</option>
                     <option th:each="t : ${T(org.softuni.mobilele.models.enums.TransmissionTypeEnum).values()}"
                             th:text="${t}"
                             th:value="${t}"
-                            th:selected="${t} == *{transmissionType}">
+                            th:selected="${t} == *{transmission}">
                     </option>
                 </select>
                 <p class="invalid-feedback errors alert alert-danger">
                     Transmission type is required.
                 </p>
             </div>
+            <!-- EO: Transmission -->
 
         </div>
 
 
         <div class="row">
 
+            <!-- Year -->
             <div class="form-group col-md-6 mb-3">
                 <label for="year" class="text-white font-weight-bold">Year</label>
                 <input id="year"
@@ -117,11 +126,14 @@
                        type="number"
                        class="form-control"
                        placeholder="Manufacturing year"/>
-                <p class="invalid-feedback errors alert alert-danger">
-                    Manufacturing year is required.
+                <p th:if="${#fields.hasErrors('year')}"
+                   th:errors="*{year}"
+                   class="invalid-feedback errors alert alert-danger">
                 </p>
             </div>
+            <!-- EO: Year -->
 
+            <!-- Mileage -->
             <div class="form-group col-md-6 mb-3">
                 <label for="mileage" class="text-white font-weight-bold">Mileage</label>
                 <input id="mileage"
@@ -135,9 +147,11 @@
                     Mileage in kilometers is required.
                 </p>
             </div>
+            <!-- EO: Mileage -->
 
         </div>
 
+        <!-- Description -->
         <div class="form-group">
             <label class="text-white font-weight-bold" for="description">Description</label>
             <textarea id="description"
@@ -152,7 +166,9 @@
                 Description is required.
             </p>
         </div>
+        <!-- EO: Description -->
 
+        <!-- Image URL -->
         <div class="form-group">
             <label class="text-white font-weight-bold" for="imageUrl">Image URL</label>
             <input id="imageUrl"
@@ -166,6 +182,7 @@
                 Vehicle image URL is required.
             </p>
         </div>
+        <!-- EO: Image URL -->
 
         <div class="row">
             <div class="col col-md-4">

@@ -1,12 +1,9 @@
 package org.softuni.mobilele.models.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.Type;
 import org.softuni.mobilele.models.enums.EngineTypeEnum;
 import org.softuni.mobilele.models.enums.TransmissionTypeEnum;
 
@@ -16,8 +13,6 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "offers")
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public class OfferEntity extends BaseEntity {
@@ -31,13 +26,13 @@ public class OfferEntity extends BaseEntity {
     @ManyToOne
     private ModelEntity model;
 
-    @Column(name = "engine_type")
+    @Column(name = "engine")
     @Enumerated(EnumType.STRING)
-    private EngineTypeEnum engineType;
+    private EngineTypeEnum engine;
 
-    @Column(name = "transmission_type")
+    @Column(name = "transmission")
     @Enumerated(EnumType.STRING)
-    private TransmissionTypeEnum transmissionType;
+    private TransmissionTypeEnum transmission;
 
     @Column(name = "image_url")
     private String imageUrl;

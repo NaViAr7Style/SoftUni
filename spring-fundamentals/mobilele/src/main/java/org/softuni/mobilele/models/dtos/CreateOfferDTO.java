@@ -3,9 +3,7 @@ package org.softuni.mobilele.models.dtos;
 import jakarta.validation.constraints.*;
 import org.softuni.mobilele.models.enums.EngineTypeEnum;
 import org.softuni.mobilele.models.enums.TransmissionTypeEnum;
-import org.springframework.data.auditing.CurrentDateTimeProvider;
-
-import java.time.LocalDate;
+import org.softuni.mobilele.models.validation.YearNotInTheFuture;
 
 public record CreateOfferDTO(
 
@@ -18,10 +16,10 @@ public record CreateOfferDTO(
         Long modelId,
 
         @NotNull
-        EngineTypeEnum engineType,
+        EngineTypeEnum engine,
 
         @NotNull
-        TransmissionTypeEnum transmissionType,
+        TransmissionTypeEnum transmission,
 
         @NotEmpty
         String imageUrl,
@@ -34,10 +32,11 @@ public record CreateOfferDTO(
         @NotNull
         Integer price,
 
-        @NotNull
-        @Min(1930)
-        Integer year
-) {
+        @NotNull(message = "Manufacturing year is required.")
+        @YearNotInTheFuture(message = "The year should not be in the future.")
+        @Min(value = 1930, message = "Please select a year equal to or after 1930.")
+        Integer year) {
+
         public static CreateOfferDTO empty() {
               return new CreateOfferDTO(null, null, null,
                       null, null, null, null, null);
