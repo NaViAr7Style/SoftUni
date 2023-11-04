@@ -1,5 +1,5 @@
 body {
-     background-image: url('/img/1.jpg');
+     background-image: url('/images/1.jpg');
      background-position: center center;
      background-repeat: no-repeat;
      background-attachment: fixed;
@@ -57,3 +57,20 @@ form.main-form {
 .logged-user {
      color: white;
 }
+
+.rememberme {
+     display: flex;
+     justify-content: flex-start;
+}
+
+.rememberme-label {
+     margin-top: 6px;
+     font-size: 14px;
+     margin-right: 10px;
+}
+
+.rememberme-check {
+     width: 12px;
+}
+
+

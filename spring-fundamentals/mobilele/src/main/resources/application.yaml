@@ -15,6 +15,9 @@ spring:
     init:
       mode: never
 
+mobilele:
+  remember.me.key: ${REMEMBER_ME_KEY}
+
 open.exchange.rates:
   schema: https
   host: openexchangerates.org
