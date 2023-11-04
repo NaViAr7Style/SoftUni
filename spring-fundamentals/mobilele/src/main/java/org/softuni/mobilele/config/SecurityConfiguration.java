@@ -60,7 +60,8 @@ public class SecurityConfiguration {
                     rememberMe
                             .key(rememberMeKey)
                             .rememberMeParameter("rememberme")
-                            .rememberMeCookieName("rememberme");
+                            .rememberMeCookieName("rememberme")
+                            .tokenValiditySeconds(1800);
                 }
         ).build();
     }
