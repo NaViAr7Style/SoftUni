@@ -1,6 +1,8 @@
 package org.softuni.mobilele.models.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -20,30 +22,32 @@ public class OfferEntity extends BaseEntity {
     @JdbcTypeCode(Types.VARCHAR)
     private UUID uuid;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String description;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private ModelEntity model;
 
-    @Column(name = "engine")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private EngineTypeEnum engine;
 
-    @Column(name = "transmission")
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private TransmissionTypeEnum transmission;
 
-    @Column(name = "image_url")
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
     @Column
-    private long mileage;
+    @Positive
+    private int mileage;
 
-    @Column
+    @Column(nullable = false)
     private BigDecimal price;
 
     @Column
+    @Min(1930)
     private int year;
 
 }

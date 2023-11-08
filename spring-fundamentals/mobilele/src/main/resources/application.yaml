@@ -15,6 +15,13 @@ spring:
     init:
       mode: never
 
+# In order for DELETE queries to work. Installs a filter from Spring MVC what chains before the Dispatcher Servlet
+# And starts listening for submits with name="_method" parameter and a valid "value" field
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
 mobilele:
   remember.me.key: ${REMEMBER_ME_KEY}
 
