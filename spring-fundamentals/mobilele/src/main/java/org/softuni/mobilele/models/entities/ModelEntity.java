@@ -18,7 +18,7 @@ public class ModelEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private VehicleCategoryEnum category;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private BrandEntity brand;
 
 }
