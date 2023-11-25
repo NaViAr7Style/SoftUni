@@ -27,4 +27,8 @@ public record UserRegistrationDTO(
         String password,
 
         String confirmPassword) {
+
+        public String fullName() {
+                return firstName + " " + lastName;
+        }
 }

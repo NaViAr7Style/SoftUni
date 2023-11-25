@@ -14,7 +14,7 @@ public class ModelEntity extends BaseEntity {
     @Column
     private String name;
 
-    @Column(name = "category")
+    @Column
     @Enumerated(EnumType.STRING)
     private VehicleCategoryEnum category;
 
