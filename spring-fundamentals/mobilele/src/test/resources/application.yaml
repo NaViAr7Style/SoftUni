@@ -1,0 +1,44 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: never
+
+  # In order for DELETE queries to work. Installs a filter from Spring MVC what chains before the Dispatcher Servlet
+  # And starts listening for submits with name="_method" parameter and a valid "value" field
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+mobilele:
+  remember.me.key: topsecret
+
+open.exchange.rates:
+  schema: https
+  host: openexchangerates.org
+  path: /api/latest.json
+  app_id: test
+  symbols: EUR,BGN
+  enabled: false
+
+mail:
+  mobilele: "mobilele@example.com"
+  host: localhost
+  port: 1025
+  username: test
+  password: test@test.com
+
+# Mailhog:
+#   ports:
+#     - 1025:1025 - SMTP server
+#     - 8025:8025 - Web UI
+
+#server:
+#  servlet:
+#    session:
+#      timeout: 30m

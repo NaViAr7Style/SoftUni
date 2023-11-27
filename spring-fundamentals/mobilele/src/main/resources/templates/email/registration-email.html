@@ -9,9 +9,10 @@
     <title>Welcome email</title>
 </head>
 <body>
-<h1>Hello, <th:block th:text="${userFullName}">Pesho</th:block></h1>
+<h1>Hello, <th:block th:text="${userFullName}">Friend</th:block>!</h1>
 Welcome to Mobilele!
-
+<br/>
+<br/>
 Please follow the <a th:href="@{http://localhost:8080/user/activate(activation_code=*{activation_code})}">link</a> in order to activate your account.
 </body>
 </html>

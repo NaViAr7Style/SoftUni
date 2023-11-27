@@ -40,6 +40,11 @@ mail:
   username: ${MAIL_USER:softuni}
   password: ${MAIL_PASSWORD:softuni}
 
+# Mailhog:
+#   ports:
+#     - 1025:1025 - SMTP server
+#     - 8025:8025 - Web UI
+
 #server:
 #  servlet:
 #    session:

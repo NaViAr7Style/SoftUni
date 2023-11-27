@@ -63,6 +63,14 @@ public class CurrencyServiceImpl implements CurrencyService {
         Objects.requireNonNull(from, "'From' currency cannot be null!");
         Objects.requireNonNull(to, "'To' currency cannot be null!");
 
+//        {
+//            "base": "USD",
+//            "rates": {
+//                "BGN": 1.840515,
+//                "EUR": 0.937668
+//            }
+//        }
+
         // e.g. USD -> USD
         if (Objects.equals(from, to)) {
             return Optional.of(BigDecimal.ONE);
