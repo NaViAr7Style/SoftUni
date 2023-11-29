@@ -14,13 +14,15 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+  datasource:
+    url: jdbc:hsqldb:mem:testdb;sql.syntax_mys=true
 
 mobilele:
-  remember.me.key: topsecret
+  remember.me.key: test
 
 open.exchange.rates:
   schema: https
-  host: openexchangerates.org
+  host: dummy
   path: /api/latest.json
   app_id: test
   symbols: EUR,BGN
@@ -29,9 +31,9 @@ open.exchange.rates:
 mail:
   mobilele: "mobilele@example.com"
   host: localhost
-  port: 1025
-  username: test
-  password: test@test.com
+  port: 3333
+  username: test@example.com
+  password: topsecret
 
 # Mailhog:
 #   ports:

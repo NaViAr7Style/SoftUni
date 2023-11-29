@@ -33,6 +33,7 @@ public class SecurityConfiguration {
                         // Allow anyone to see the home page, the registration page and the login form
                         .requestMatchers("/","/users/register").permitAll()
                         .requestMatchers("/users/login","/users/login-error").permitAll()
+                        .requestMatchers("/api/currency/convert").permitAll()
                         .requestMatchers("/offers/all").permitAll()
                         .requestMatchers(HttpMethod.GET, "/offer/**").permitAll()
                         .requestMatchers("/error").permitAll()

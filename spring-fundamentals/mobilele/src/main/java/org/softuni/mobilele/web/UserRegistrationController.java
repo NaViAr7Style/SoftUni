@@ -29,6 +29,6 @@ public class UserRegistrationController {
 
         userService.registerUser(userRegistrationDTO);
 
-        return "index";
+        return "redirect:/";
     }
 }

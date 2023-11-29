@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -39,8 +40,8 @@ class CurrencyServiceImplTestIT {
         exchangeRateRepository.deleteAll();
     }
 
-    @ParameterizedTest
-    @MethodSource("test_Data_BGN_TO_USD")
+    @ParameterizedTest(name = "Conversion BGN/USD exRate {0}, expected {1}")
+    @MethodSource("test_data_BGN_to_USD")
     void test_BGN_TO_USD(Double exchangeRate, Double expectedValue) {
 
 //        {
@@ -64,19 +65,60 @@ class CurrencyServiceImplTestIT {
 
         assertTrue(exRateUSD_BGN.isPresent());
         assertEquals(
-                expectedValue,
-                exRateUSD_BGN.get().getRate().doubleValue(),
-                1
-
+                BigDecimal.valueOf(expectedValue).setScale(2, RoundingMode.DOWN),
+                exRateUSD_BGN.get().getRate()
         );
     }
 
-    private static Stream<Arguments> test_Data_BGN_TO_USD() {
+    @ParameterizedTest(name = "Conversion BGN/EUR exRateBGN {0}, exRateEUR {1},expected {2}")
+    @MethodSource("test_data_BGN_to_EUR")
+    void test_BGN_TO_EUR(
+            Double exchangeRateBGN,
+            Double exchangeRateEUR,
+            Double expectedValue
+    ) {
+
+//        {
+//            "base": "USD",
+//            "rates": {
+//                "BGN": 1.840515,
+//                "EUR": 0.937668
+//            }
+//        }
+//
+// expected 0.54
+
+        ExchangeRatesDTO testExchangeRate = new ExchangeRatesDTO(
+                "USD",
+                Map.of("BGN", BigDecimal.valueOf(exchangeRateBGN),
+                        "EUR", BigDecimal.valueOf(exchangeRateEUR))
+        );
+
+        currencyServiceToTest.refreshRates(testExchangeRate);
+
+        Optional<ExchangeRateEntity> exRateEUR_BGN = exchangeRateRepository.findById("EUR");
+
+        assertTrue(exRateEUR_BGN.isPresent());
+        assertEquals(
+                BigDecimal.valueOf(expectedValue).setScale(2, RoundingMode.DOWN),
+                exRateEUR_BGN.get().getRate()
+        );
+    }
+
+    private static Stream<Arguments> test_data_BGN_to_USD() {
         return Stream.of(
                 Arguments.of(1.840515, 0.54),
                 Arguments.of(1.752345, 0.57),
                 Arguments.of(1.333333, 0.75),
                 Arguments.of(1.0, 1.0)
+        );
+    }
+
+    private static Stream<Arguments> test_data_BGN_to_EUR() {
+        return Stream.of(
+                Arguments.of(1.840515, 0.937668, 0.51),
+                Arguments.of(1.777515, 0.544454, 0.31),
+                Arguments.of(1.0, 1.0, 1.0)
         );
     }
 }
