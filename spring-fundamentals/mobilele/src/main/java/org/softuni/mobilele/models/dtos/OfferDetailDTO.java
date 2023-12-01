@@ -14,7 +14,9 @@ public record OfferDetailDTO(
         BigDecimal price,
         EngineTypeEnum engine,
         TransmissionTypeEnum transmission,
-        String imageUrl
+        String imageUrl,
+        String seller,
+        boolean viewerIsOwner
 ) {
     public String summary() {
         return brand + " " + model + ", " + year;

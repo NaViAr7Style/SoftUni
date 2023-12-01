@@ -4,15 +4,13 @@ import jakarta.transaction.Transactional;
 import org.softuni.mobilele.models.dtos.CreateOfferDTO;
 import org.softuni.mobilele.models.dtos.OfferDetailDTO;
 import org.softuni.mobilele.models.dtos.OfferSummaryDTO;
-import org.softuni.mobilele.models.entities.ModelEntity;
-import org.softuni.mobilele.models.entities.OfferEntity;
-import org.softuni.mobilele.models.entities.UserEntity;
+import org.softuni.mobilele.models.entities.*;
+import org.softuni.mobilele.models.enums.UserRoleEnum;
 import org.softuni.mobilele.repositories.ModelRepository;
 import org.softuni.mobilele.repositories.OfferRepository;
 import org.softuni.mobilele.repositories.UserRepository;
 import org.softuni.mobilele.services.MonitoringService;
 import org.softuni.mobilele.services.OfferService;
-import org.softuni.mobilele.services.exceptions.ObjectNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -76,10 +75,10 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public Optional<OfferDetailDTO> getOfferDetails(UUID offerUUID) {
+    public Optional<OfferDetailDTO> getOfferDetails(UUID offerUUID, UserDetails viewer) {
         return offerRepository
                 .findByUuid(offerUUID)
-                .map(OfferServiceImpl::mapAsDetails);
+                .map(o -> this.mapAsDetails(o, viewer));
     }
 
     @Override
@@ -88,7 +87,7 @@ public class OfferServiceImpl implements OfferService {
         offerRepository.deleteByUuid(uuid);
     }
 
-    private static OfferDetailDTO mapAsDetails(OfferEntity offerEntity) {
+    private OfferDetailDTO mapAsDetails(OfferEntity offerEntity, UserDetails viewer) {
         // TODO: Reuse
         return new OfferDetailDTO(
                 offerEntity.getUuid().toString(),
@@ -99,8 +98,36 @@ public class OfferServiceImpl implements OfferService {
                 offerEntity.getPrice(),
                 offerEntity.getEngine(),
                 offerEntity.getTransmission(),
-                offerEntity.getImageUrl()
+                offerEntity.getImageUrl(),
+                offerEntity.getSeller().getFirstName(),
+                isOwner(offerEntity, viewer)
         );
+    }
+
+    private boolean isOwner(OfferEntity offerEntity, UserDetails viewer) {
+        if (viewer == null) {
+            // Anonymous users own no offers
+            return false;
+        }
+
+        UserEntity viewerEntity = userRepository
+                .findByEmail(viewer.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("Unknown user..."));
+
+        if (isAdmin(viewerEntity)) {
+            // All admins own all offers
+            return true;
+        }
+
+        return Objects.equals(offerEntity.getSeller().getId(), viewerEntity.getId());
+    }
+
+    private boolean isAdmin(UserEntity userEntity) {
+        return userEntity
+                .getRoles()
+                .stream()
+                .map(UserRoleEntity::getRole)
+                .anyMatch(r -> UserRoleEnum.ADMIN == r);
     }
 
     private static OfferSummaryDTO mapAsSummary(OfferEntity offerEntity) {
