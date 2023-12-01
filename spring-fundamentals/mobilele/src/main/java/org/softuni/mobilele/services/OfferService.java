@@ -19,4 +19,6 @@ public interface OfferService {
     Optional<OfferDetailDTO> getOfferDetails(UUID offerUUID, UserDetails viewer);
 
     void deleteOffer(UUID uuid);
+
+    boolean isOwner(UUID uuid, String username);
 }

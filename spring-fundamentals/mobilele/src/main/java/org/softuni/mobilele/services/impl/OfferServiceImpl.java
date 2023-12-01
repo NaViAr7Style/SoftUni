@@ -100,18 +100,26 @@ public class OfferServiceImpl implements OfferService {
                 offerEntity.getTransmission(),
                 offerEntity.getImageUrl(),
                 offerEntity.getSeller().getFirstName(),
-                isOwner(offerEntity, viewer)
+                isOwner(offerEntity, viewer != null ? viewer.getUsername() : null)
         );
     }
 
-    private boolean isOwner(OfferEntity offerEntity, UserDetails viewer) {
-        if (viewer == null) {
+    @Override
+    public boolean isOwner(UUID uuid, String username) {
+        OfferEntity offerEntity = offerRepository.findByUuid(uuid).orElse(null);
+
+        return isOwner(offerEntity, username);
+    }
+
+    private boolean isOwner(OfferEntity offerEntity, String username) {
+        if (offerEntity == null || username == null) {
             // Anonymous users own no offers
+            // Missing offers are meaningless
             return false;
         }
 
         UserEntity viewerEntity = userRepository
-                .findByEmail(viewer.getUsername())
+                .findByEmail(username)
                 .orElseThrow(() -> new IllegalArgumentException("Unknown user..."));
 
         if (isAdmin(viewerEntity)) {
