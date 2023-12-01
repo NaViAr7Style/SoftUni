@@ -4,7 +4,7 @@ import org.aspectj.lang.annotation.Pointcut;
 
 public class PointCuts {
 
-    @Pointcut("execution(* org.softuni.mobilele.services.OfferService.getAllOffers(..))")
+    @Pointcut("execution(* org.softuni.mobilele.services.interfaces.OfferService.getAllOffers(..))")
     public void trackOfferSearch() {}
 
     @Pointcut("@annotation(WarnIfExecutionExceeds)")

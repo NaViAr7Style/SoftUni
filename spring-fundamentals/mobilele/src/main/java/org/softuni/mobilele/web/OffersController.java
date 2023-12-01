@@ -1,7 +1,7 @@
 package org.softuni.mobilele.web;
 
 import org.softuni.mobilele.models.dtos.OfferSummaryDTO;
-import org.softuni.mobilele.services.OfferService;
+import org.softuni.mobilele.services.interfaces.OfferService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;

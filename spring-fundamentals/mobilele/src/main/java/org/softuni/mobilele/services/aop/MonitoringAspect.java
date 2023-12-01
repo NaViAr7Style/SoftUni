@@ -1,14 +1,13 @@
 package org.softuni.mobilele.services.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.softuni.mobilele.services.MonitoringService;
+import org.softuni.mobilele.services.interfaces.MonitoringService;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 

@@ -3,7 +3,7 @@ package org.softuni.mobilele.services.impl;
 import org.softuni.mobilele.models.dtos.BrandDTO;
 import org.softuni.mobilele.models.dtos.ModelDTO;
 import org.softuni.mobilele.repositories.BrandRepository;
-import org.softuni.mobilele.services.BrandService;
+import org.softuni.mobilele.services.interfaces.BrandService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

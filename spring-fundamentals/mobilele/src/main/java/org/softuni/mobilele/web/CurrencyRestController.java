@@ -3,7 +3,7 @@ package org.softuni.mobilele.web;
 import jakarta.validation.Valid;
 import org.softuni.mobilele.models.dtos.ConvertRequestDTO;
 import org.softuni.mobilele.models.dtos.MoneyDTO;
-import org.softuni.mobilele.services.CurrencyService;
+import org.softuni.mobilele.services.interfaces.CurrencyService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

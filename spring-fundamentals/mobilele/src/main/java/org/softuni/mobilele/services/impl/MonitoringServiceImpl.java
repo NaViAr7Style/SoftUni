@@ -4,7 +4,7 @@ import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.softuni.mobilele.services.MonitoringService;
+import org.softuni.mobilele.services.interfaces.MonitoringService;
 import org.springframework.stereotype.Service;
 
 

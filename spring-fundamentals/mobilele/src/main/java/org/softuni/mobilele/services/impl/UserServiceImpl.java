@@ -4,7 +4,7 @@ import org.softuni.mobilele.models.dtos.UserRegistrationDTO;
 import org.softuni.mobilele.models.entities.UserEntity;
 import org.softuni.mobilele.models.events.UserRegisteredEvent;
 import org.softuni.mobilele.repositories.UserRepository;
-import org.softuni.mobilele.services.UserService;
+import org.softuni.mobilele.services.interfaces.UserService;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

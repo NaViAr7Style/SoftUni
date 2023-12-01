@@ -9,7 +9,7 @@ import org.softuni.mobilele.models.enums.UserRoleEnum;
 import org.softuni.mobilele.repositories.ModelRepository;
 import org.softuni.mobilele.repositories.OfferRepository;
 import org.softuni.mobilele.repositories.UserRepository;
-import org.softuni.mobilele.services.OfferService;
+import org.softuni.mobilele.services.interfaces.OfferService;
 import org.softuni.mobilele.services.aop.WarnIfExecutionExceeds;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -19,24 +19,24 @@ public class UserTestDataUtil {
     @Autowired
     private UserRoleRepository userRoleRepository;
 
-    public UserEntity createTestUser() {
-        return createUser(List.of(UserRoleEnum.USER));
+    public UserEntity createTestUser(String username) {
+        return createUser(List.of(UserRoleEnum.USER), username);
     }
 
-    public UserEntity createTestAdmin() {
-        return createUser(List.of(UserRoleEnum.ADMIN));
+    public UserEntity createTestAdmin(String username) {
+        return createUser(List.of(UserRoleEnum.ADMIN), username);
     }
 
-    private UserEntity createUser(List<UserRoleEnum> roles) {
+    private UserEntity createUser(List<UserRoleEnum> roles, String username) {
 
         List<UserRoleEntity> roleEntities = userRoleRepository.findAllByRoleIn(roles);
 
         UserEntity newUser = new UserEntity();
 
         newUser.setActive(true);
-        newUser.setEmail("test@example.com");
-        newUser.setFirstName("Test user first");
-        newUser.setLastName("Test user last");
+        newUser.setEmail(username);
+        newUser.setFirstName("firstName");
+        newUser.setLastName("lastName");
         newUser.setRoles(roleEntities);
 
         return userRepository.save(newUser);

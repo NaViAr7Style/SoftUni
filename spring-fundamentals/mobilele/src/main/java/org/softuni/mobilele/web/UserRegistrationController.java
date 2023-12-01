@@ -1,7 +1,7 @@
 package org.softuni.mobilele.web;
 
 import org.softuni.mobilele.models.dtos.UserRegistrationDTO;
-import org.softuni.mobilele.services.UserService;
+import org.softuni.mobilele.services.interfaces.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -2,14 +2,13 @@ package org.softuni.mobilele.services.impl;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.softuni.mobilele.models.dtos.ExchangeRatesDTO;
 import org.softuni.mobilele.models.entities.ExchangeRateEntity;
 import org.softuni.mobilele.repositories.ExchangeRateRepository;
-import org.softuni.mobilele.services.CurrencyService;
+import org.softuni.mobilele.services.interfaces.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 

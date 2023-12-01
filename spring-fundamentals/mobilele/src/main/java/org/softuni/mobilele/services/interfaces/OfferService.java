@@ -1,4 +1,4 @@
-package org.softuni.mobilele.services;
+package org.softuni.mobilele.services.interfaces;
 
 import org.softuni.mobilele.models.dtos.CreateOfferDTO;
 import org.softuni.mobilele.models.dtos.OfferDetailDTO;

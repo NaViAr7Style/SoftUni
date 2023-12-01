@@ -2,7 +2,7 @@ package org.softuni.mobilele.init;
 
 import org.softuni.mobilele.config.OpenExchangeRateConfig;
 import org.softuni.mobilele.models.dtos.ExchangeRatesDTO;
-import org.softuni.mobilele.services.CurrencyService;
+import org.softuni.mobilele.services.interfaces.CurrencyService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;

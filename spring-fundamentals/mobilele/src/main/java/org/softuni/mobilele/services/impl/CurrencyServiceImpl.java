@@ -7,7 +7,7 @@ import org.softuni.mobilele.models.dtos.ExchangeRatesDTO;
 import org.softuni.mobilele.models.dtos.MoneyDTO;
 import org.softuni.mobilele.models.entities.ExchangeRateEntity;
 import org.softuni.mobilele.repositories.ExchangeRateRepository;
-import org.softuni.mobilele.services.CurrencyService;
+import org.softuni.mobilele.services.interfaces.CurrencyService;
 import org.softuni.mobilele.services.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
