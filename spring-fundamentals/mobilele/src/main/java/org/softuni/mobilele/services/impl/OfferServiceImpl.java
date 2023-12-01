@@ -9,8 +9,8 @@ import org.softuni.mobilele.models.enums.UserRoleEnum;
 import org.softuni.mobilele.repositories.ModelRepository;
 import org.softuni.mobilele.repositories.OfferRepository;
 import org.softuni.mobilele.repositories.UserRepository;
-import org.softuni.mobilele.services.MonitoringService;
 import org.softuni.mobilele.services.OfferService;
+import org.softuni.mobilele.services.aop.WarnIfExecutionExceeds;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,16 +28,13 @@ public class OfferServiceImpl implements OfferService {
     private final OfferRepository offerRepository;
     private final ModelRepository modelRepository;
     private final UserRepository userRepository;
-    private final MonitoringService monitoringService;
 
     public OfferServiceImpl(OfferRepository offerRepository,
                             ModelRepository modelRepository,
-                            UserRepository userRepository,
-                            MonitoringService monitoringService) {
+                            UserRepository userRepository) {
         this.offerRepository = offerRepository;
         this.modelRepository = modelRepository;
         this.userRepository = userRepository;
-        this.monitoringService = monitoringService;
     }
 
     @Override
@@ -64,16 +61,16 @@ public class OfferServiceImpl implements OfferService {
         return newOffer.getUuid();
     }
 
+    @WarnIfExecutionExceeds(timeInMillis = 1000)
     @Override
     public Page<OfferSummaryDTO> getAllOffers(Pageable pageable) {
-
-        monitoringService.logOfferSearch();
 
         return offerRepository
                 .findAll(pageable)
                 .map(OfferServiceImpl::mapAsSummary);
     }
 
+    @WarnIfExecutionExceeds(timeInMillis = 500)
     @Override
     public Optional<OfferDetailDTO> getOfferDetails(UUID offerUUID, UserDetails viewer) {
         return offerRepository
