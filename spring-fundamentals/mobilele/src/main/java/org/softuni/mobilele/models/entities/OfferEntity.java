@@ -36,6 +36,9 @@ public class OfferEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private TransmissionTypeEnum transmission;
 
+    @ManyToOne
+    private UserEntity seller;
+
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 

@@ -6,13 +6,17 @@ import org.softuni.mobilele.models.dtos.OfferDetailDTO;
 import org.softuni.mobilele.models.dtos.OfferSummaryDTO;
 import org.softuni.mobilele.models.entities.ModelEntity;
 import org.softuni.mobilele.models.entities.OfferEntity;
+import org.softuni.mobilele.models.entities.UserEntity;
 import org.softuni.mobilele.repositories.ModelRepository;
 import org.softuni.mobilele.repositories.OfferRepository;
+import org.softuni.mobilele.repositories.UserRepository;
 import org.softuni.mobilele.services.MonitoringService;
 import org.softuni.mobilele.services.OfferService;
 import org.softuni.mobilele.services.exceptions.ObjectNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,18 +28,21 @@ public class OfferServiceImpl implements OfferService {
 
     private final OfferRepository offerRepository;
     private final ModelRepository modelRepository;
+    private final UserRepository userRepository;
     private final MonitoringService monitoringService;
 
     public OfferServiceImpl(OfferRepository offerRepository,
                             ModelRepository modelRepository,
+                            UserRepository userRepository,
                             MonitoringService monitoringService) {
         this.offerRepository = offerRepository;
         this.modelRepository = modelRepository;
+        this.userRepository = userRepository;
         this.monitoringService = monitoringService;
     }
 
     @Override
-    public UUID createOffer(CreateOfferDTO createOfferDTO) {
+    public UUID createOffer(CreateOfferDTO createOfferDTO, UserDetails seller) {
 
         OfferEntity newOffer = map(createOfferDTO);
 
@@ -44,7 +51,14 @@ public class OfferServiceImpl implements OfferService {
                 .orElseThrow(() ->
                         new IllegalArgumentException("Model with id " + createOfferDTO.modelId() + " not found!"));
 
+        UserEntity user = userRepository
+                .findByEmail(seller.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException("User with email '" +
+                                                                    seller.getUsername() +
+                                                                    "' not found!"));
+
         newOffer.setModel(model);
+        newOffer.setSeller(user);
 
         newOffer = offerRepository.save(newOffer);
 
