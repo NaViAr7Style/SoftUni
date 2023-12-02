@@ -35,6 +35,10 @@ management:
 mobilele:
   remember.me.key: ${REMEMBER_ME_KEY}
 
+google.recaptcha:
+  site: ${RECAPTCHA_SITE_KEY}
+  secret: ${RECAPTCHA_SITE_SECRET}
+
 open.exchange.rates:
   schema: https
   host: openexchangerates.org

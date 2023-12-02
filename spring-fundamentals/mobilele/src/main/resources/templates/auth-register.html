@@ -16,6 +16,7 @@
 
     <!-- REGISTRATION FORM START -->
     <form
+        id="registration-form"
         th:action="@{/users/register}"
         th:method="POST"
           class="main-form mx-auto col-md-8 d-flex flex-column justify-content-center">
@@ -84,7 +85,10 @@
         <div class="row">
             <div class="col col-md-4">
                 <div class="button-holder d-flex">
-                    <input type="submit" class="btn btn-info btn-lg" value="Register"/>
+                    <button class="g-recaptcha btn btn-info btn-lg"
+                            th:attr="data-sitekey=${@reCaptchaConfig.getSite()}"
+                            data-callback='onSubmit'
+                            data-action='submit'>Register</button>
                 </div>
             </div>
         </div>
@@ -92,6 +96,16 @@
     <!-- REGISTRATION FORM END -->
 
 </div>
+
+<!-- ReCaptcha-->
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("registration-form").submit();
+    }
+</script>
+
+<!--EO: ReCaptcha-->
 
 <div>
      <footer> </footer>
