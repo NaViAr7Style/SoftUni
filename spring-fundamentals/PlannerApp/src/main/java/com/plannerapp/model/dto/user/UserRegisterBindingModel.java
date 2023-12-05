@@ -3,6 +3,7 @@ package com.plannerapp.model.dto.user;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+
 public class UserRegisterBindingModel extends UserLoginBindingModel {
 
     @Email
@@ -26,4 +27,6 @@ public class UserRegisterBindingModel extends UserLoginBindingModel {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+
 }

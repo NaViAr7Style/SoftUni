@@ -67,13 +67,12 @@ public class SecurityConfiguration {
                         // Invalidate the HTTP session
                         .invalidateHttpSession(true)
         ).rememberMe(
-                rememberMe -> {
-                    rememberMe
-                            .key(rememberMeKey)
-                            .rememberMeParameter("rememberme")
-                            .rememberMeCookieName("rememberme")
-                            .tokenValiditySeconds(1800);
-                }
+                rememberMe -> rememberMe
+                        .key(rememberMeKey)
+                        .rememberMeParameter("rememberme")
+                        .rememberMeCookieName("rememberme")
+                        .tokenValiditySeconds(1800)
+
         ).build();
     }
 
